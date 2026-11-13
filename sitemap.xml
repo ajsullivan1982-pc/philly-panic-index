@@ -2,4 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://phillypanic.com/</loc><changefreq>daily</changefreq></url>
   <url><loc>https://phillypanic.com/methodology.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://phillypanic.com/research.html</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://phillypanic.com/research/fan-asset-disposition-policy.html</loc></url>
+  <url><loc>https://phillypanic.com/research/sixers-2-0-risk-desk-has-doubts.html</loc></url>
 </urlset>
