@@ -104,7 +104,12 @@
   // Sharing: the phone's share sheet where there is one, otherwise a prefilled post on X.
   const SITE = 'https://phillypanic.com/';
   const signed = d => (dir(d) === 'flat' ? 'unch' : `${arrow(d)}${f1(Math.abs(d))}`);
-  const share = text => {
+  // Anonymous counts of which share buttons get used. Does nothing if analytics is blocked or absent.
+  const track = name => {
+    try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: name, title: name, event: true }); } catch (e) { /* never block a share */ }
+  };
+  const share = (text, name) => {
+    track(name);
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
       navigator.share({ text, url: SITE }).catch(() => {});
       return;
@@ -112,12 +117,12 @@
     window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(SITE)}`, '_blank', 'noopener');
   };
   $('share-city').addEventListener('click', () =>
-    share(`Philly Panic Index: ${f1(cur.city)} (${signed(cur.move)}) · ${cur.status} · ${dateShort(cur.date)} official print. via @phlpanicindex`));
+    share(`Philly Panic Index: ${f1(cur.city)} (${signed(cur.move)}) · ${cur.status} · ${dateShort(cur.date)} official print. via @phlpanicindex`, 'share-city'));
   $('teams').addEventListener('click', e => {
     const b = e.target.closest('button[data-share]');
     if (!b) return;
     const t = TEAMS.find(x => x.id === b.dataset.share);
-    share(`${t.tk} ${f1(cur.teams[t.id].score)} (${signed(teamMove(t))}): ${t.name} panic, ${dateShort(cur.date)} official print. Citywide PPI ${f1(cur.city)}, ${cur.status}. via @phlpanicindex`);
+    share(`${t.tk} ${f1(cur.teams[t.id].score)} (${signed(teamMove(t))}): ${t.name} panic, ${dateShort(cur.date)} official print. Citywide PPI ${f1(cur.city)}, ${cur.status}. via @phlpanicindex`, `share-${t.id}`);
   });
 
   // Attribution
