@@ -50,7 +50,7 @@
   const cityOk = Math.abs(cityRaw - cur.city) <= 0.051 || Math.abs(totalContrib - cur.city) <= 0.051;
   $('audit').innerHTML = (teamsOk === 4 && cityOk && Math.abs(wSum - 100) < 0.01)
     ? `<b>AUDIT ✓</b> 24 of 24 components reconcile to four team scores. Weights sum to 100%. City reading reconciles to ${cityRaw.toFixed(3)}.`
-    : `<b class="bad">AUDIT ⚠</b> The direct weighted result is ${f1(cityRaw)} (${teamsOk} of 4 team scores reconcile, weights sum to ${f1(wSum)}%). A citywide control or correction may apply. The logged reading is shown as published.`;
+    : `<b class="bad">AUDIT ⚠︎</b> The direct weighted result is ${f1(cityRaw)} (${teamsOk} of 4 team scores reconcile, weights sum to ${f1(wSum)}%). A citywide control or correction may apply. The logged reading is shown as published.`;
 
   // Status ladder and driver
   $('ladder').innerHTML = BANDS.slice().reverse().map(b =>
@@ -85,6 +85,22 @@
       return `<tr><td class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></td><td class="score num" style="color:${t.color}">${f1(d.score)}</td><td class="num">${moveHtml(teamMove(t))}</td>${cells}<td class="num">${f1(d.weight)}%</td><td class="num">${contrib(t).toFixed(2)}</td><td>${spark(t)}</td><td class="l"><span class="rating ${cls}" style="margin:0">${label}</span></td><td><button type="button" class="share" data-share="${t.id}" aria-label="Share the ${t.name} reading">Share</button></td></tr>`;
     }).join('') + '</tbody>';
 
+  // The same team data as cards, for screens too narrow for the table.
+  $('team-cards').innerHTML = byWeight.map(t => {
+    const d = cur.teams[t.id], p = prev && prev.teams[t.id].c ? prev.teams[t.id] : null;
+    const [label, cls] = rating(t);
+    const comps = d.c.map((v, i) => {
+      const ch = p ? v - p.c[i] : 0;
+      return `<div class="heat" style="background:rgba(255,61,82,${(v / 100 * 0.8).toFixed(2)})"><span>${COMPS[i].short}</span><b class="num">${v}${ch > 0 ? ' ▲' : ch < 0 ? ' ▼' : ''}</b></div>`;
+    }).join('');
+    return `<article class="tcard" style="border-left-color:${t.color}">
+      <div class="tcard-top"><div class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></div><div class="score num" style="color:${t.color}">${f1(d.score)}</div><div class="num">${moveHtml(teamMove(t))}</div></div>
+      <div class="tcard-comps">${comps}</div>
+      <div class="tcard-foot"><span class="dim num">City wt ${f1(d.weight)}% · Contrib ${contrib(t).toFixed(2)}</span><span class="rating ${cls}" style="margin:0">${label}</span></div>
+      <button type="button" class="share" data-share="${t.id}">Share ${t.tk}</button>
+    </article>`;
+  }).join('');
+
   // Sharing: the phone's share sheet where there is one, otherwise a prefilled post on X.
   const SITE = 'https://phillypanic.com/';
   const signed = d => (dir(d) === 'flat' ? 'unch' : `${arrow(d)}${f1(Math.abs(d))}`);
@@ -97,7 +113,7 @@
   };
   $('share-city').addEventListener('click', () =>
     share(`Philly Panic Index: ${f1(cur.city)} (${signed(cur.move)}) · ${cur.status} · ${dateShort(cur.date)} official print. via @phlpanicindex`));
-  $('team-table').addEventListener('click', e => {
+  $('teams').addEventListener('click', e => {
     const b = e.target.closest('button[data-share]');
     if (!b) return;
     const t = TEAMS.find(x => x.id === b.dataset.share);
@@ -168,6 +184,22 @@
       return `<tr class="${i === 0 ? 'cur' : ''}"><td>${dateLong(r.date)}</td><td class="num"><b>${f1(r.city)}</b></td><td class="num">${moveHtml(r.move)}</td><td class="l sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</td>${TEAMS.map(t => `<td class="num">${f1(r.teams[t.id].score)}</td>`).join('')}<td class="wrap-cell">${esc(r.driver)}</td></tr>`;
     }).join('') + '</tbody>';
 
+  // The tape as a list for narrow screens: latest ten, the rest on request.
+  const TAPE_SHORT = 10;
+  let tapeAll = false;
+  const drawTapeList = () => {
+    const rows = readings.slice().reverse();
+    $('tape-list').innerHTML = (tapeAll ? rows : rows.slice(0, TAPE_SHORT)).map((r, i) => {
+      const b = bandIndex(r.status);
+      return `<li class="${i === 0 ? 'cur' : ''}"><div class="tl-top"><span>${dateLong(r.date)}</span><b class="num">${f1(r.city)}</b><span class="num">${moveHtml(r.move)}</span></div><div class="tl-status sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</div><div class="tl-teams num">${TEAMS.map(t => `${t.tk} ${f1(r.teams[t.id].score)}`).join(' · ')}</div><p>${esc(r.driver)}</p></li>`;
+    }).join('');
+    const more = $('tape-more');
+    more.hidden = rows.length <= TAPE_SHORT;
+    more.textContent = tapeAll ? `Show latest ${TAPE_SHORT} only` : `Show all ${rows.length} official prints`;
+  };
+  $('tape-more').addEventListener('click', () => { tapeAll = !tapeAll; drawTapeList(); });
+  drawTapeList();
+
   $('foot-data').textContent = `${readings.length} official prints on record · ${cur.version}`;
 
   // Chart
@@ -235,6 +267,7 @@
       tip.style.left = Math.min(Math.max(4, tx + 10), W - tip.offsetWidth - 4) + 'px';
       tip.style.top = Math.max(0, y(near.city) - tip.offsetHeight - 8) + 'px';
     };
+    chartEl.onpointerdown = chartEl.onpointermove; // a tap shows the reading on touch screens
     chartEl.onpointerleave = () => { tip.style.display = 'none'; };
   }
   $('tabs').addEventListener('click', e => {

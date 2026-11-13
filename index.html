@@ -50,8 +50,8 @@
     <a href="#tape">F4 TAPE</a>
     <a href="methodology.html">F5 METHODOLOGY</a>
     <span class="sp"></span>
-    <a href="https://x.com/phlpanicindex" rel="noopener">X @phlpanicindex</a>
-    <a href="https://instagram.com/phlpanicindex" rel="noopener">IG @phlpanicindex</a>
+    <a href="https://x.com/phlpanicindex" rel="noopener" aria-label="X @phlpanicindex">X <span class="handle">@phlpanicindex</span></a>
+    <a href="https://instagram.com/phlpanicindex" rel="noopener" aria-label="Instagram @phlpanicindex">IG <span class="handle">@phlpanicindex</span></a>
   </nav>
 
   <div id="banner"></div>
@@ -104,9 +104,10 @@
 
     <section class="panel" id="teams">
       <header><span>Components &lt;Equity&gt; by team</span><span>3</span></header>
-      <div class="scroll">
+      <div class="scroll wide-only">
         <table id="team-table"></table>
       </div>
+      <div class="team-cards narrow-only" id="team-cards"></div>
     </section>
 
     <div class="grid g-two">
@@ -129,8 +130,12 @@
 
     <section class="panel" id="tape">
       <header><span>The Tape · Official prints</span><span>6</span></header>
-      <div class="scroll">
+      <div class="scroll wide-only">
         <table id="tape-table"></table>
+      </div>
+      <div class="narrow-only">
+        <ol class="tape-list" id="tape-list"></ol>
+        <button type="button" class="share tape-more" id="tape-more"></button>
       </div>
     </section>
   </main>
