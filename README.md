@@ -12,6 +12,16 @@ A static site with no build step.
 
 ## Daily update
 
+Automatic. Nothing to run.
+
+- The workbook's `Site Feed` tab mirrors the Official Log, minus research summaries and calculation notes, and is published to the web as CSV. It is the only public tab.
+- `.github/workflows/update-data.yml` downloads that feed every 15 minutes, rebuilds `data/ppi.js`, and commits only when the readings changed. A new row in the Official Log reaches the site in roughly 10 to 30 minutes (Google refreshes the published feed every few minutes, and GitHub's schedule can run late).
+- To force a run: the repository's Actions tab > Update readings > Run workflow.
+- The job refuses to publish fewer readings than are already live. After deleting a row on purpose, run the manual steps below with `-AllowShrink`.
+- Do not edit the `Site Feed` tab; it is one formula in A1. To stop the feed: File > Share > Publish to web > Stop publishing.
+
+### By hand
+
 1. In the Official Calculation Log workbook, open the Official Log tab and choose File > Download > Comma-separated values (.csv).
 2. Rebuild the data file:
 
