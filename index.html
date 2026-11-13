@@ -4,7 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Philly Panic Index</title>
-<meta name="description" content="A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. The numbers are real. The analysis is unnecessary.">
+<!-- ppi:meta (rewritten by tools/update-data.ps1 with the latest official print) -->
+<meta name="description" content="Official print NOV 13, 2026: 68.6, down 1.3 from the prior print. Sixers rallied from 17 down to beat Toronto 123-112, restoring some confidence as Embiid returned and finished the game; the Eagles' bye-week collapse remains the dominant cityw...">
+<meta property="og:title" content="Philly Panic Index: 68.6, HIGH ANXIETY">
+<meta property="og:description" content="Official print NOV 13, 2026: 68.6, down 1.3 from the prior print. Sixers rallied from 17 down to beat Toronto 123-112, restoring some confidence as Embiid returned and finished the game; the Eagles' bye-week collapse remains the dominant cityw...">
+<!-- /ppi:meta -->
+<link rel="canonical" href="https://phillypanic.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phillypanic.com/">
+<meta property="og:site_name" content="Philly Panic Index">
+<meta property="og:image" content="https://phillypanic.com/assets/card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Philly Panic Index. The numbers are real. The analysis is unnecessary.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@phlpanicindex">
+<meta name="theme-color" content="#040605">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -21,7 +37,7 @@
       <p class="tagline">The numbers are real. The analysis is unnecessary.</p>
     </div>
     <div class="mast-meta">
-      <div class="date" id="mast-date">&nbsp;</div>
+      <div class="date" id="mast-date">NOV 13, 2026</div>
       <div id="mast-session">OPENING PANIC · 5:00 AM ET</div>
       <div id="mast-state">&nbsp;</div>
     </div>
@@ -39,6 +55,7 @@
   </nav>
 
   <div id="banner"></div>
+  <noscript><div class="banner">The charts and tables on this page need JavaScript. The reading and driver shown are the latest official print as of the date above.</div></noscript>
 
   <main>
     <div class="grid g-hero" id="index">
@@ -47,19 +64,28 @@
         <div class="body">
           <div class="label">Citywide PPI</div>
           <div class="hero-top">
-            <div class="big num" id="city">--.-</div>
+            <div class="big num" id="city">68.6</div>
             <div class="move num" id="move"></div>
           </div>
-          <div id="status-chip"></div>
+          <div class="hero-status">
+            <div id="status-chip"></div>
+            <button type="button" class="share" id="share-city">Share this print</button>
+          </div>
           <div class="audit" id="audit"></div>
           <div class="chart-head">
-            <span class="label">Citywide PPI, official prints</span>
-            <span class="tabs" id="tabs">
-              <button type="button" data-r="30">30D</button>
-              <button type="button" data-r="90">90D</button>
-              <button type="button" data-r="0" class="on">ALL</button>
+            <span class="label" id="chart-label">Citywide PPI, official prints</span>
+            <span class="chart-ctl">
+              <span class="tabs">
+                <button type="button" id="teams-toggle" aria-pressed="false">+ TEAMS</button>
+              </span>
+              <span class="tabs" id="tabs">
+                <button type="button" data-r="30">30D</button>
+                <button type="button" data-r="90">90D</button>
+                <button type="button" data-r="0" class="on">ALL</button>
+              </span>
             </span>
           </div>
+          <div class="chart-legend" id="chart-legend"></div>
           <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
         </div>
       </section>
@@ -70,7 +96,7 @@
           <ul class="ladder" id="ladder"></ul>
           <div class="driver">
             <div class="label">Primary panic driver</div>
-            <p id="driver"></p>
+            <p id="driver">Sixers rallied from 17 down to beat Toronto 123-112, restoring some confidence as Embiid returned and finished the game; the Eagles' bye-week collapse remains the dominant citywide risk.</p>
           </div>
         </div>
       </section>

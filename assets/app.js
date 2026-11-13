@@ -73,7 +73,7 @@
     return ['HOLD PANIC', 'am'];
   };
   $('team-table').innerHTML =
-    `<thead><tr><th>Ticker</th><th>TPS</th><th>Chg</th>${COMPS.map(c => `<th class="heat" title="${c.name}, ${c.w * 100}% of team score">${c.short}</th>`).join('')}<th>City wt</th><th>Contrib</th><th>Trend</th><th class="l">Desk rating</th></tr></thead><tbody>` +
+    `<thead><tr><th>Ticker</th><th>TPS</th><th>Chg</th>${COMPS.map(c => `<th class="heat" title="${c.name}, ${c.w * 100}% of team score">${c.short}</th>`).join('')}<th>City wt</th><th>Contrib</th><th>Trend</th><th class="l">Desk rating</th><th><span class="sr">Share</span></th></tr></thead><tbody>` +
     byWeight.map(t => {
       const d = cur.teams[t.id], p = prev && prev.teams[t.id].c ? prev.teams[t.id] : null;
       const cells = d.c.map((v, i) => {
@@ -82,8 +82,27 @@
         return `<td class="heat num" style="background:rgba(255,61,82,${(v / 100 * 0.8).toFixed(2)})" title="${COMPS[i].name}: ${v}${p ? ` (${ch >= 0 ? '+' : ''}${ch} vs prior print)` : ''}">${v}${mark}</td>`;
       }).join('');
       const [label, cls] = rating(t);
-      return `<tr><td class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></td><td class="score num" style="color:${t.color}">${f1(d.score)}</td><td class="num">${moveHtml(teamMove(t))}</td>${cells}<td class="num">${f1(d.weight)}%</td><td class="num">${contrib(t).toFixed(2)}</td><td>${spark(t)}</td><td class="l"><span class="rating ${cls}" style="margin:0">${label}</span></td></tr>`;
+      return `<tr><td class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></td><td class="score num" style="color:${t.color}">${f1(d.score)}</td><td class="num">${moveHtml(teamMove(t))}</td>${cells}<td class="num">${f1(d.weight)}%</td><td class="num">${contrib(t).toFixed(2)}</td><td>${spark(t)}</td><td class="l"><span class="rating ${cls}" style="margin:0">${label}</span></td><td><button type="button" class="share" data-share="${t.id}" aria-label="Share the ${t.name} reading">Share</button></td></tr>`;
     }).join('') + '</tbody>';
+
+  // Sharing: the phone's share sheet where there is one, otherwise a prefilled post on X.
+  const SITE = 'https://phillypanic.com/';
+  const signed = d => (dir(d) === 'flat' ? 'unch' : `${arrow(d)}${f1(Math.abs(d))}`);
+  const share = text => {
+    if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
+      navigator.share({ text, url: SITE }).catch(() => {});
+      return;
+    }
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(SITE)}`, '_blank', 'noopener');
+  };
+  $('share-city').addEventListener('click', () =>
+    share(`Philly Panic Index: ${f1(cur.city)} (${signed(cur.move)}) · ${cur.status} · ${dateShort(cur.date)} official print. via @phlpanicindex`));
+  $('team-table').addEventListener('click', e => {
+    const b = e.target.closest('button[data-share]');
+    if (!b) return;
+    const t = TEAMS.find(x => x.id === b.dataset.share);
+    share(`${t.tk} ${f1(cur.teams[t.id].score)} (${signed(teamMove(t))}): ${t.name} panic, ${dateShort(cur.date)} official print. Citywide PPI ${f1(cur.city)}, ${cur.status}. via @phlpanicindex`);
+  });
 
   // Attribution
   $('stack').innerHTML = byWeight.map(t => {
@@ -152,7 +171,7 @@
   $('foot-data').textContent = `${readings.length} official prints on record · ${cur.version}`;
 
   // Chart
-  let range = 0;
+  let range = 0, showTeams = false;
   const chartEl = $('chart'), tip = $('tip');
   function drawChart() {
     const pts = range ? readings.filter(r => dayDiff(r.date, cur.date) <= range) : readings;
@@ -160,6 +179,7 @@
     const m = { l: 34, r: 12, t: 10, b: 22 };
     const t0 = +day(pts[0].date), t1 = +day(pts[pts.length - 1].date);
     const vals = pts.map(p => p.city);
+    if (showTeams) pts.forEach(p => TEAMS.forEach(t => vals.push(p.teams[t.id].score)));
     let y0 = Math.max(0, Math.floor((Math.min(...vals) - 3) / 5) * 5);
     let y1 = Math.min(100, Math.ceil((Math.max(...vals) + 3) / 5) * 5);
     const x = t => (t1 === t0 ? (W - m.l - m.r) / 2 + m.l : m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r));
@@ -170,15 +190,23 @@
       s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(g)}" y2="${y(g)}" stroke="#1c2620"/><text x="${m.l - 6}" y="${y(g) + 4}" text-anchor="end" fill="#808b82" font-size="11">${g}</text>`;
     }
     BANDS.forEach(b => {
-      if (b.lo > y0 && b.lo < y1) {
+      // The bands describe the citywide reading, so they come off when team lines go on.
+      if (!showTeams && b.lo > y0 && b.lo < y1) {
         s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(b.lo)}" y2="${y(b.lo)}" stroke="#ffb000" stroke-dasharray="4 4" opacity="0.7"/><text x="${m.l + 6}" y="${y(b.lo) - 5}" fill="#ffb000" font-size="10">${b.name} ${b.lo}</text>`;
       }
     });
+    if (showTeams) {
+      TEAMS.forEach(t => {
+        const line = pts.map(p => `${x(+day(p.date)).toFixed(1)},${y(p.teams[t.id].score).toFixed(1)}`).join(' ');
+        s += `<polyline fill="none" style="stroke:${t.color}" stroke-width="1.5" stroke-linejoin="round" opacity="0.9" points="${line}"/>`;
+      });
+    }
     for (let i = 1; i < pts.length; i++) {
       const gap = dayDiff(pts[i - 1].date, pts[i].date) > 1;
       s += `<line x1="${x(+day(pts[i - 1].date))}" y1="${y(pts[i - 1].city)}" x2="${x(+day(pts[i].date))}" y2="${y(pts[i].city)}" stroke="${gap ? '#808b82' : '#3dff5c'}" stroke-width="${gap ? 1 : 2}" ${gap ? 'stroke-dasharray="2 4"' : ''}/>`;
     }
     pts.forEach((p, i) => {
+      if (showTeams && i !== pts.length - 1) return;
       s += `<circle cx="${x(+day(p.date))}" cy="${y(p.city)}" r="${i === pts.length - 1 ? 4.5 : 3}" fill="${i === pts.length - 1 ? '#ff3d52' : '#3dff5c'}"/>`;
     });
     const every = Math.max(1, Math.ceil(pts.length / Math.max(2, Math.floor(W / 90))));
@@ -191,12 +219,17 @@
     });
     const old = chartEl.querySelector('svg');
     if (old) old.remove();
-    chartEl.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 ${W} ${H}" font-family="IBM Plex Mono, Consolas, monospace" role="img" aria-label="Citywide PPI by official print">${s}</svg>`);
+    chartEl.insertAdjacentHTML('afterbegin', `<svg viewBox="0 0 ${W} ${H}" font-family="IBM Plex Mono, Consolas, monospace" role="img" aria-label="${showTeams ? 'Citywide PPI and the four team panic scores' : 'Citywide PPI'} by official print">${s}</svg>`);
+    $('chart-label').textContent = showTeams ? 'Citywide PPI and team scores, official prints' : 'Citywide PPI, official prints';
+    $('chart-legend').innerHTML = showTeams
+      ? `<span><i style="background:var(--green)"></i>CITY</span>` + TEAMS.map(t => `<span><i style="background:${t.color}"></i>${t.tk}</span>`).join('')
+      : '';
 
     chartEl.onpointermove = e => {
       const box = chartEl.getBoundingClientRect(), px = e.clientX - box.left;
       const near = pts.reduce((a, b) => (Math.abs(x(+day(b.date)) - px) < Math.abs(x(+day(a.date)) - px) ? b : a));
-      tip.innerHTML = `${dateLong(near.date)}<br><b>${f1(near.city)}</b> ${moveHtml(near.move)}<br>${esc(near.status)}`;
+      tip.innerHTML = `${dateLong(near.date)}<br><b>${f1(near.city)}</b> ${moveHtml(near.move)}<br>${esc(near.status)}` +
+        (showTeams ? '<br>' + TEAMS.map(t => `<span style="color:${t.color}">${t.tk} ${f1(near.teams[t.id].score)}</span>`).join('<br>') : '');
       tip.style.display = 'block';
       const tx = x(+day(near.date));
       tip.style.left = Math.min(Math.max(4, tx + 10), W - tip.offsetWidth - 4) + 'px';
@@ -209,6 +242,13 @@
     if (!b) return;
     range = +b.dataset.r;
     $('tabs').querySelectorAll('button').forEach(n => n.classList.toggle('on', n === b));
+    drawChart();
+  });
+  $('teams-toggle').addEventListener('click', e => {
+    showTeams = !showTeams;
+    e.currentTarget.classList.toggle('on', showTeams);
+    e.currentTarget.setAttribute('aria-pressed', showTeams);
+    e.currentTarget.textContent = showTeams ? '− TEAMS' : '+ TEAMS';
     drawChart();
   });
   window.addEventListener('resize', drawChart);
