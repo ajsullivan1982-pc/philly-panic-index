@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philly Panic Index</title>
+<meta name="description" content="A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. The numbers are real. The analysis is unnecessary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1 class="wordmark">Philly <em>Panic</em> Index</h1>
+      <p class="tagline">The numbers are real. The analysis is unnecessary.</p>
+    </div>
+    <div class="mast-meta">
+      <div class="date" id="mast-date">&nbsp;</div>
+      <div id="mast-session">OPENING PANIC · 5:00 AM ET</div>
+      <div id="mast-state">&nbsp;</div>
+    </div>
+  </header>
+
+  <nav class="fn" aria-label="Sections">
+    <a class="on" href="#index">F1 INDEX</a>
+    <a href="#teams">F2 TEAMS</a>
+    <a href="#desk">F3 DESK</a>
+    <a href="#tape">F4 TAPE</a>
+    <a href="methodology.html">F5 METHODOLOGY</a>
+    <span class="sp"></span>
+    <a href="https://x.com/phlpanicindex" rel="noopener">X @phlpanicindex</a>
+    <a href="https://instagram.com/phlpanicindex" rel="noopener">IG @phlpanicindex</a>
+  </nav>
+
+  <div id="banner"></div>
+
+  <main>
+    <div class="grid g-hero" id="index">
+      <section class="panel">
+        <header><span>PPI &lt;Index&gt; Citywide</span><span>1</span></header>
+        <div class="body">
+          <div class="label">Citywide PPI</div>
+          <div class="hero-top">
+            <div class="big num" id="city">--.-</div>
+            <div class="move num" id="move"></div>
+          </div>
+          <div id="status-chip"></div>
+          <div class="audit" id="audit"></div>
+          <div class="chart-head">
+            <span class="label">Citywide PPI, official prints</span>
+            <span class="tabs" id="tabs">
+              <button type="button" data-r="30">30D</button>
+              <button type="button" data-r="90">90D</button>
+              <button type="button" data-r="0" class="on">ALL</button>
+            </span>
+          </div>
+          <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Market Status</span><span>2</span></header>
+        <div class="body">
+          <ul class="ladder" id="ladder"></ul>
+          <div class="driver">
+            <div class="label">Primary panic driver</div>
+            <p id="driver"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" id="teams">
+      <header><span>Components &lt;Equity&gt; by team</span><span>3</span></header>
+      <div class="scroll">
+        <table id="team-table"></table>
+      </div>
+    </section>
+
+    <div class="grid g-two">
+      <section class="panel">
+        <header><span>Panic attribution</span><span>4</span></header>
+        <div class="body">
+          <div class="label" style="margin-bottom:8px">Share of citywide panic, by source</div>
+          <div class="stack" id="stack"></div>
+          <div class="legend" id="legend"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="desk">
+        <header><span>The Desk · Research notes</span><span>5</span></header>
+        <div class="body">
+          <ul class="notes" id="notes"></ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" id="tape">
+      <header><span>The Tape · Official prints</span><span>6</span></header>
+      <div class="scroll">
+        <table id="tape-table"></table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>
+      <p class="slogan">Updated daily and whenever disaster strikes.</p>
+      <p>PPI measures panic, not team quality. It is not a forecast, a win probability, investment advice or emotional advice.</p>
+      <p>Not affiliated with the Eagles, Phillies, Sixers, Flyers or any league.</p>
+    </div>
+    <div>
+      <p><a href="methodology.html">Methodology</a> · <a href="https://x.com/phlpanicindex" rel="noopener">X</a> · <a href="https://instagram.com/phlpanicindex" rel="noopener">Instagram</a></p>
+      <p id="foot-data"></p>
+    </div>
+  </footer>
+</div>
+
+<script src="data/ppi.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

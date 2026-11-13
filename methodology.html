@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology · Philly Panic Index</title>
+<meta name="description" content="How the Philly Panic Index is calculated: six components, four teams, fixed weights and an unreasonable amount of documentation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1 class="wordmark"><a href="index.html">Philly <em>Panic</em> Index</a></h1>
+      <p class="tagline">Methodology. Scoring framework v1.2. Yes, there are versions.</p>
+    </div>
+    <div class="mast-meta">
+      <div class="date">THE FINE PRINT</div>
+      <div>Last reviewed Nov 13, 2026</div>
+    </div>
+  </header>
+
+  <nav class="fn" aria-label="Sections">
+    <a href="index.html#index">F1 INDEX</a>
+    <a href="index.html#teams">F2 TEAMS</a>
+    <a href="index.html#desk">F3 DESK</a>
+    <a href="index.html#tape">F4 TAPE</a>
+    <a class="on" href="methodology.html">F5 METHODOLOGY</a>
+    <span class="sp"></span>
+    <a href="https://x.com/phlpanicindex" rel="noopener">X @phlpanicindex</a>
+    <a href="https://instagram.com/phlpanicindex" rel="noopener">IG @phlpanicindex</a>
+  </nav>
+
+  <main>
+    <section class="panel" style="margin:12px 0">
+      <header><span>What this measures</span><span>1</span></header>
+      <div class="body prose">
+        <p>The Philly Panic Index (PPI) measures panic surrounding the Eagles, Phillies, Sixers and Flyers on a scale of 0 to 100. It combines evidence-based editorial assessments with fixed component weights to produce four team panic scores and one citywide reading. Lower means less panic. Higher means more.</p>
+        <p><strong>PPI measures panic, not team quality.</strong> A struggling team can become less panic-inducing once everyone accepts it. A strong team can generate substantial anxiety when injuries, expectations or stakes rise. The reading is not a win probability or a forecast of results.</p>
+        <p>The arithmetic is fixed once the inputs are established. Choosing the inputs is the editorial part.</p>
+      </div>
+    </section>
+
+    <div class="grid g-two">
+      <section class="panel">
+        <header><span>The six components</span><span>2</span></header>
+        <div class="body prose">
+          <div class="scroll"><table>
+            <thead><tr><th>Component</th><th>Weight</th></tr></thead>
+            <tbody>
+              <tr><td>Performance</td><td>30%</td></tr>
+              <tr><td>Expectations vs Reality</td><td>20%</td></tr>
+              <tr><td>Stakes</td><td>15%</td></tr>
+              <tr><td>Injuries &amp; Roster News</td><td>15%</td></tr>
+              <tr><td>Fan &amp; Media Sentiment</td><td>10%</td></tr>
+              <tr><td>Historical Trauma</td><td>10%</td></tr>
+            </tbody>
+          </table></div>
+          <ul>
+            <li><strong>Performance:</strong> current results, in context.</li>
+            <li><strong>Expectations vs Reality:</strong> the gap between what was reasonable to expect and what is happening.</li>
+            <li><strong>Stakes:</strong> competitive stakes and calendar pressure.</li>
+            <li><strong>Injuries &amp; Roster News:</strong> availability, roster and depth risk.</li>
+            <li><strong>Fan &amp; Media Sentiment:</strong> meaningful local evidence. Analyst intuition alone is insufficient.</li>
+            <li><strong>Historical Trauma:</strong> a recurring failure pattern activated by a current trigger. History alone cannot manufacture panic. It has tried.</li>
+          </ul>
+          <pre class="formula">TPS = 0.30 × Performance
+    + 0.20 × Expectations vs Reality
+    + 0.15 × Stakes
+    + 0.15 × Injuries &amp; Roster News
+    + 0.10 × Fan &amp; Media Sentiment
+    + 0.10 × Historical Trauma</pre>
+          <p>There is no daily cap, smoothing or limiter on a team score. If the components say a team moved 14 points overnight, it moved 14 points overnight.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Panic calculator</span><span>3</span></header>
+        <div class="body">
+          <div class="label" style="margin-bottom:8px">Load the latest official components</div>
+          <div class="btns" id="calc-btns"></div>
+          <div id="calc-rows"></div>
+          <div class="calc-out">
+            <div>
+              <div class="label">Team Panic Score</div>
+              <div class="big num" id="calc-tps">0.0</div>
+            </div>
+            <div class="dim num" id="calc-math" style="font-size:12px;flex:1;min-width:200px"></div>
+          </div>
+          <p class="dim" style="font-size:12px;margin:10px 0 0">For recreational use. Sliding a component to 100 does not make it official. Evidence does.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid g-two">
+      <section class="panel">
+        <header><span>The citywide reading</span><span>4</span></header>
+        <div class="body prose">
+          <pre class="formula">City PPI = Σ (Team Panic Score × team weight)</pre>
+          <p>Team weights reflect the calendar, total 100%, and are separate from team panic: changing a team's weight never changes its own score. New allocations require explicit approval, and weights are never adjusted to hit a desired number.</p>
+          <div class="scroll"><table>
+            <thead><tr><th>2026 period</th><th>Eagles</th><th>Phillies</th><th>Sixers</th><th>Flyers</th></tr></thead>
+            <tbody>
+              <tr><td>Through Oct 7</td><td>34%</td><td>45%</td><td>11%</td><td>10%</td></tr>
+              <tr><td>Oct 8–11</td><td>40%</td><td>30%</td><td>10%</td><td>20%</td></tr>
+              <tr><td>Oct 12–20</td><td>50%</td><td>10%</td><td>15%</td><td>25%</td></tr>
+              <tr class="cur"><td>Oct 21 onward</td><td>50%</td><td>10%</td><td>25%</td><td>15%</td></tr>
+            </tbody>
+          </table></div>
+          <p>When a season ends, the default is to rebalance at the first 5:00 AM ET run on or after 14 calendar days later. On a rebalance day, the notes separate how much of the move came from the teams and how much came from the weights. A rebalance is a calendar event. It is not evidence that anything got better.</p>
+          <p><strong>Volatility controls.</strong> The citywide reading may move up to ±12 points on a normal day and ±20 on a major, regime-changing event such as a clinch, elimination, championship, major injury or major trade. An extraordinary circuit breaker may exceed ±20 with explicit documentation. These controls apply to the city number only and never alter a team score.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Market Status</span><span>5</span></header>
+        <div class="body prose">
+          <p>Status is derived from the final citywide PPI on every run. It is never carried forward from the day before.</p>
+          <ul class="ladder" id="ladder" style="font-family:var(--mono);padding:0;max-width:none"></ul>
+          <p style="margin-top:14px"><strong>Postseason elimination.</strong> When a postseason run ends, Stakes follows a fixed schedule: 100 on the first official calculation after the final out or whistle, 45 on the next daily run, 20 on the one after, then 10 for the rest of the offseason, until new calendar pressure or a new event justifies a change. The other five components are reassessed from current evidence.</p>
+          <p><strong>Ordinary decay.</strong> When nothing material worsens, panic drifts back toward a structural baseline. There is no universal daily decrement, percentage or half-life. A quiet day alone does not earn a reduction.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid g-two">
+      <section class="panel">
+        <header><span>Acceptance, collapse and rebuilds</span><span>6</span></header>
+        <div class="body prose">
+          <p>Acceptance can lower panic without the team improving. The log distinguishes three things:</p>
+          <ul>
+            <li><strong>Competitive collapse:</strong> poor results, injuries and failed expectations remain live sources of panic. Losing more games does not, by itself, earn relief.</li>
+            <li><strong>Fan or media capitulation:</strong> the conversation turns to the draft while the organization is still trying to win. Talk alone does not make a rebuild.</li>
+            <li><strong>Organizational change toward the future:</strong> concrete future-first actions plus corroborated acceptance can justify reassessing particular components. The roster can get worse while the pressure recedes.</li>
+          </ul>
+          <p>There is no automatic discount, formula or reset for any of this. Each adjustment has to name the evidence, the components affected and the reasons the others held.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>How a reading becomes official</span><span>7</span></header>
+        <div class="body prose">
+          <ul>
+            <li><strong>5:00 AM ET evidence cutoff.</strong> Nothing after the cutoff is counted in the morning print.</li>
+            <li><strong>Research and calculate.</strong> All four teams are checked, all 24 components are assessed, and the sources are preserved. Primary team and league sources come first.</li>
+            <li><strong>Verify.</strong> The arithmetic, weights, movement and status are re-read and checked before a reading is marked ready.</li>
+            <li><strong>No double counting.</strong> One fact is not several shocks. Distinct consequences may touch distinct components, with reasons.</li>
+            <li><strong>No substitutes.</strong> If today's reading is missing or unverified, yesterday's is not presented as today's. Missing readings are not reconstructed from vibes.</li>
+            <li><strong>Corrections preserve history.</strong> Original values and reasons are kept. Methodology versions apply going forward and never rescore the past.</li>
+          </ul>
+          <p>Movement is always measured against the most recent official logged reading.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin:12px 0">
+      <header><span>Known limits</span><span>8</span></header>
+      <div class="body prose">
+        <p>Scores and movement are published to one decimal. Component values are editorial judgments supported by documented evidence; there is no point-by-point rubric that maps every result, injury or headline to a number. Ordinary decay has no numeric schedule. Acceptance adjustments have no universal formula. Fractional status boundaries are settled by the official log, not by this page.</p>
+        <p>Where the rules run out, the index calls for review rather than inventing a formula. This is, by a comfortable margin, the most disciplined thing about Philadelphia sports.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>
+      <p class="slogan">Updated daily and whenever disaster strikes.</p>
+      <p>PPI measures panic, not team quality. It is not a forecast, a win probability, investment advice or emotional advice.</p>
+      <p>Not affiliated with the Eagles, Phillies, Sixers, Flyers or any league.</p>
+    </div>
+    <div><p><a href="index.html">Back to the index</a></p></div>
+  </footer>
+</div>
+
+<script src="data/ppi.js"></script>
+<script src="assets/core.js"></script>
+<script>
+(function () {
+  const { TEAMS, COMPS, BANDS, readings, f1 } = window.PPI;
+  const $ = id => document.getElementById(id);
+  const cur = readings[readings.length - 1];
+
+  $('ladder').innerHTML = BANDS.slice().reverse().map(b =>
+    `<li class="sev-${b.sev}"><span class="rng">${b.range}</span><span>${b.name}</span></li>`).join('');
+
+  $('calc-rows').innerHTML = COMPS.map((c, i) =>
+    `<div class="calc-row"><label for="c${i}">${c.name} <span class="dim">× ${c.w.toFixed(2)}</span></label><input type="range" id="c${i}" min="0" max="100" step="1" value="50"><span class="num" id="v${i}">50</span><span class="num dim" id="p${i}"></span></div>`).join('');
+
+  function update() {
+    let total = 0;
+    const parts = COMPS.map((c, i) => {
+      const v = +$('c' + i).value, p = v * c.w;
+      total += p;
+      $('v' + i).textContent = v;
+      $('p' + i).textContent = '+' + f1(p);
+      return f1(p);
+    });
+    $('calc-tps').textContent = f1(total);
+    $('calc-math').textContent = parts.join(' + ') + ' = ' + f1(total);
+  }
+  COMPS.forEach((c, i) => $('c' + i).addEventListener('input', update));
+
+  if (cur) {
+    $('calc-btns').innerHTML = TEAMS.map(t => `<button type="button" data-t="${t.id}" style="color:${t.color}">${t.name}</button>`).join('');
+    $('calc-btns').addEventListener('click', e => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      cur.teams[b.dataset.t].c.forEach((v, i) => { $('c' + i).value = v; });
+      update();
+    });
+    cur.teams.eagles.c.forEach((v, i) => { $('c' + i).value = v; });
+  }
+  update();
+})();
+</script>
+</body>
+</html>
