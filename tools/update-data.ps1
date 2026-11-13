@@ -134,11 +134,9 @@ function Update-Page {
   $title = "Philly Panic Index: $city, $($last.status)"
   $desc = "Official print $dateText`: $city, $moveText. $short"
 
-  $meta = @(
-    "<meta name=`"description`" content=`"$(& $h $desc)`">",
-    "<meta property=`"og:title`" content=`"$(& $h $title)`">",
-    "<meta property=`"og:description`" content=`"$(& $h $desc)`">"
-  ) -join $nl
+  # Only the search description carries the reading. The link-preview card (og: tags) stays
+  # evergreen, because social sites cache it at the moment a link is posted.
+  $meta = "<meta name=`"description`" content=`"$(& $h $desc)`">"
   $new = [regex]::Replace($html, '(?s)(<!-- ppi:meta[^>]*-->).*?(<!-- /ppi:meta -->)', { param($m) $m.Groups[1].Value + $nl + $meta + $nl + $m.Groups[2].Value })
   foreach ($pair in @(@('city', $city), @('mast-date', $dateText), @('driver', (& $h $driver)))) {
     $value = $pair[1]
