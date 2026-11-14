@@ -1,0 +1,17 @@
+<!doctype html>
+<!-- Source for the home-screen icons, assets/icon-180.png, icon-192.png and icon-512.png.
+     The mark is drawn smaller than in assets/icon.svg so phones can round the corners
+     without clipping it. Rebuild:
+     msedge --headless --hide-scrollbars --screenshot=assets\icon-512.png --window-size=512,512 tools\icon.html
+     Edge will not open a window as small as the other two, so they are drawn at four times
+     the size and scaled down (720 for icon-180.png, 768 for icon-192.png):
+     msedge --headless --hide-scrollbars --force-device-scale-factor=0.25 --screenshot=assets\icon-180.png --window-size=720,720 tools\icon.html -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>html, body { margin: 0; height: 100%; background: #040605; overflow: hidden; } svg { display: block; width: 100vw; height: 100vh; }</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#040605"/><g transform="translate(8.5 6) scale(0.74)"><rect x="2" y="54" width="60" height="6" fill="#3dff5c"/><polyline points="6,40 18,44 28,30 38,34 56,12" fill="none" stroke="#3dff5c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="56" cy="12" r="6.5" fill="#ff3d52"/></g></svg>
+</body>
+</html>

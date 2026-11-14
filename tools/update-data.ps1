@@ -21,17 +21,27 @@ BLOCKED are skipped; nothing is carried forward or filled in.
 #>
 param(
   [Parameter(Mandatory = $true)][string[]]$Source,
-  [string]$Out = (Join-Path (Join-Path (Split-Path $PSScriptRoot -Parent) 'data') 'ppi.js'),
+  # Where the data file goes. Default: data/ppi.js in the site.
+  [string]$Out,
   # By default the script refuses to publish fewer readings than are already live,
   # so a half-loaded feed can never erase history. Pass this after a deliberate removal.
   [switch]$AllowShrink,
   # The homepage. The latest official print is written into its link-preview tags and
   # its static text, for anything that reads the page without running JavaScript.
-  [string]$Page = (Join-Path (Split-Path $PSScriptRoot -Parent) 'index.html')
+  [string]$Page,
+  # The RSS feed: the latest official prints plus the research notes. Default: feed.xml in the site.
+  [string]$Feed
 )
 
 $ErrorActionPreference = 'Stop'
 $inv = [Globalization.CultureInfo]::InvariantCulture
+
+# The defaults are worked out here, not in the parameter list: Windows PowerShell 5.1 has
+# no script folder yet at that point when the script is started with -File.
+$root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+if (-not $Out) { $Out = Join-Path (Join-Path $root 'data') 'ppi.js' }
+if (-not $Page) { $Page = Join-Path $root 'index.html' }
+if (-not $Feed) { $Feed = Join-Path $root 'feed.xml' }
 
 function ConvertTo-Number([string]$s) {
   $t = ($s -replace '[%,\s+]', '') -replace [char]0x2212, '-'
@@ -148,6 +158,77 @@ function Update-Page {
   }
 }
 Update-Page
+
+# feed.xml: the 30 latest official prints and every research note, newest first. Readers and
+# feed services poll it, so it is rewritten only when its contents change. Like the homepage,
+# it is left alone on a test run that writes the data somewhere else.
+$skipFeed = $PSBoundParameters.ContainsKey('Out') -and -not $PSBoundParameters.ContainsKey('Feed')
+if (-not $skipFeed) {
+  $x = { param([string]$s) $s.Replace('&', '&amp;').Replace('<', '&lt;').Replace('>', '&gt;') }
+  $site = 'https://phillypanic.com/'
+  try { $tz = [TimeZoneInfo]::FindSystemTimeZoneById('America/New_York') }
+  catch { $tz = [TimeZoneInfo]::FindSystemTimeZoneById('Eastern Standard Time') }
+  $toUtc = { param([datetime]$d) [TimeZoneInfo]::ConvertTimeToUtc([datetime]::SpecifyKind($d, 'Unspecified'), $tz) }
+  $items = @()
+
+  foreach ($k in ($keys | Select-Object -Last 30)) {
+    $r = $byKey[$k]
+    $mv = [double]$r.move
+    $moveText = 'unchanged'
+    if ($mv -gt 0.04) { $moveText = "up $($mv.ToString('0.0', $inv))" }
+    if ($mv -lt -0.04) { $moveText = "down $((-$mv).ToString('0.0', $inv))" }
+    $dateText = [datetime]::ParseExact($r.date, 'yyyy-MM-dd', $inv).ToString('MMM d', $inv)
+    $items += [pscustomobject]@{
+      when  = & $toUtc ([datetime]::ParseExact($k.Substring(0, 16), 'yyyy-MM-dd HH:mm', $inv))
+      title = "PPI $(([double]$r.city).ToString('0.0', $inv)), $moveText. $($r.status). $dateText official print"
+      link  = $site
+      guid  = "ppi:$k"
+      perma = 'false'
+      desc  = $r.driver
+    }
+  }
+
+  $research = Join-Path $root 'research'
+  if (Test-Path -LiteralPath $research) {
+    foreach ($f in (Get-ChildItem -LiteralPath $research -Filter '*.html' | Where-Object { $_.Name -notmatch '^_' } | Sort-Object Name)) {
+      $t = [IO.File]::ReadAllText($f.FullName, [Text.Encoding]::UTF8)
+      $get = { param($p) $m = [regex]::Match($t, $p); if ($m.Success) { [Net.WebUtility]::HtmlDecode($m.Groups[1].Value) } }
+      $title = & $get '<meta property="og:title" content="([^"]*)"'
+      $url = & $get '<link rel="canonical" href="([^"]*)"'
+      $date = & $get '<meta property="article:published_time" content="(\d{4}-\d{2}-\d{2})'
+      if (-not ($title -and $url -and $date)) { continue }
+      $items += [pscustomobject]@{
+        # Notes carry a date but no time; noon Eastern keeps them on the right day everywhere.
+        when  = & $toUtc ([datetime]::ParseExact($date, 'yyyy-MM-dd', $inv).AddHours(12))
+        title = "Research: $title"
+        link  = $url
+        guid  = $url
+        perma = 'true'
+        desc  = & $get '<meta name="description" content="([^"]*)"'
+      }
+    }
+  }
+
+  $items = @($items | Sort-Object when -Descending)
+  $rfc = { param($d) $d.ToString('ddd, dd MMM yyyy HH:mm:ss', $inv) + ' GMT' }
+  $xml = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>`n<rss version=`"2.0`" xmlns:atom=`"http://www.w3.org/2005/Atom`">`n<channel>`n" +
+    "  <title>Philly Panic Index</title>`n  <link>$site</link>`n" +
+    "  <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>`n" +
+    "  <language>en-us</language>`n  <atom:link href=`"${site}feed.xml`" rel=`"self`" type=`"application/rss+xml`"/>`n" +
+    "  <lastBuildDate>$(& $rfc $items[0].when)</lastBuildDate>`n"
+  foreach ($i in $items) {
+    $xml += "  <item>`n    <title>$(& $x $i.title)</title>`n    <link>$($i.link)</link>`n    <guid isPermaLink=`"$($i.perma)`">$(& $x $i.guid)</guid>`n" +
+      "    <pubDate>$(& $rfc $i.when)</pubDate>`n    <description>$(& $x ([string]$i.desc))</description>`n  </item>`n"
+  }
+  $xml += "</channel>`n</rss>`n"
+  $utf8 = New-Object Text.UTF8Encoding($false)
+  $was = ''
+  if (Test-Path -LiteralPath $Feed) { $was = [IO.File]::ReadAllText($Feed, $utf8) }
+  if ($was -ne $xml) {
+    [IO.File]::WriteAllText($Feed, $xml, $utf8)
+    "Feed written: $($items.Count) items"
+  }
+}
 
 if (Test-Path -LiteralPath $outFull) {
   $old = [IO.File]::ReadAllText($outFull, [Text.Encoding]::UTF8)

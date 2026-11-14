@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- Source for the per-article link-preview images, assets/cards/SLUG.png (1200x630).
+     The text comes from the address: k = kicker, d = date, h = headline. Rebuild:
+     msedge --headless --screenshot=assets\cards\SLUG.png --window-size=1200,630 --hide-scrollbars --virtual-time-budget=8000 "file:///C:/path/to/tools/article-card.html?k=EAGLES&d=OCT 28, 2026&h=Eagles: Buy, Sell or Hold?" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #040605; color: #dfe4da; font-family: "IBM Plex Mono", Consolas, monospace; }
+  .bar { background: #ffb000; color: #2b1c00; font-size: 20px; font-weight: 600; letter-spacing: 0.08em; padding: 8px 56px; display: flex; justify-content: space-between; text-transform: uppercase; }
+  .in { position: absolute; left: 56px; right: 56px; top: 78px; bottom: 96px; display: flex; flex-direction: column; justify-content: center; }
+  .mark { font-family: "Anton", Impact, sans-serif; font-size: 34px; text-transform: uppercase; color: #f3f5ee; letter-spacing: 0.02em; margin: 0 0 22px; }
+  .mark em { font-style: normal; color: #3dff5c; }
+  h1 { font-family: "Anton", Impact, sans-serif; font-weight: 400; font-size: 150px; line-height: 1.02; margin: 0; text-transform: uppercase; color: #f3f5ee; letter-spacing: 0.01em; }
+  .foot { position: absolute; left: 0; right: 0; bottom: 0; border-top: 6px solid #3dff5c; padding: 16px 56px; font-size: 24px; display: flex; justify-content: space-between; color: #808b82; }
+  .foot b { color: #3dff5c; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="bar"><span>PPI &lt;RESEARCH&gt; <span id="k"></span></span><span id="d"></span></div>
+  <div class="in">
+    <p class="mark">Philly <em>Panic</em> Index</p>
+    <h1 id="h"></h1>
+  </div>
+  <div class="foot"><b>phillypanic.com/research</b><span>Longer than a post. Still unnecessary.</span></div>
+<script>
+  const q = new URLSearchParams(location.search);
+  document.getElementById('k').textContent = q.get('k') || '';
+  document.getElementById('d').textContent = q.get('d') || '';
+  const h = document.getElementById('h'), box = h.parentElement;
+  h.textContent = q.get('h') || '';
+  // Shrink the headline until it fits the space between the bar and the footer.
+  const fit = () => { let s = 150; h.style.fontSize = s + 'px'; while (s > 48 && box.scrollHeight > box.clientHeight) { s -= 4; h.style.fontSize = s + 'px'; } };
+  fit();
+  if (document.fonts) document.fonts.ready.then(fit);
+</script>
+</body>
+</html>
