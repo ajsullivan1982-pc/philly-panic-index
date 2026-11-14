@@ -15,7 +15,10 @@ A static site with no build step.
 Automatic. Nothing to run.
 
 - The workbook's `Site Feed` tab mirrors the Official Log, minus research summaries and calculation notes, and is published to the web as CSV. It is the only public tab.
-- `.github/workflows/update-data.yml` downloads that feed every 15 minutes, rebuilds `data/ppi.js`, and commits only when the readings changed. A new row in the Official Log reaches the site in roughly 10 to 30 minutes (Google refreshes the published feed every few minutes, and GitHub's schedule can run late).
+- `.github/workflows/update-data.yml` downloads that feed, rebuilds `data/ppi.js`, and commits only when the readings changed.
+- What starts that job: an Apps Script in the workbook checks the `Site Feed` tab every 5 minutes and asks GitHub to run the job when anything changed. A new row reaches the site in roughly 5 to 10 minutes. `tools/sheet-trigger.gs` is a reference copy of that script; the live copy is in the workbook (Extensions > Apps Script), and its GitHub token is in the script's properties, never in this repository.
+- Backups: the job also runs on GitHub's own 15-minute schedule, which in practice runs hours late, and on every push to `main`.
+- If prints stop appearing, the token has probably expired: create a new fine-grained token (this repository only, Actions: Read and write) and replace `GITHUB_TOKEN` in the script's properties.
 - To force a run: the repository's Actions tab > Update readings > Run workflow.
 - The job refuses to publish fewer readings than are already live. After deleting a row on purpose, run the manual steps below with `-AllowShrink`.
 - Do not edit the `Site Feed` tab; it is one formula in A1. To stop the feed: File > Share > Publish to web > Stop publishing.
