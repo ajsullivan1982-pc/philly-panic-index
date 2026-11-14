@@ -165,6 +165,12 @@ pre.formula { font-family: var(--mono); font-size: 13px; background: #000; borde
 .art-list h2 a { color: #f3f5ee; }
 .art-list h2 a:hover { color: var(--green); text-decoration: none; }
 .art-list p { font-family: var(--sans); font-size: 15px; line-height: 1.5; margin: 0; max-width: 72ch; }
+.art-list.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.art-list.cols li { border-bottom: 0; border-right: 1px solid var(--line); }
+.art-list.cols li:last-child { border-right: 0; }
+.art-list.cols h2 { font-size: 24px; }
+.art-list.cols p { font-size: 14px; }
+.art-all { margin: 0; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
 .article { max-width: 760px; margin: 0 auto; padding: 26px 18px 28px; }
 .art-title { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 6vw, 58px); line-height: 1; letter-spacing: 0.01em; text-transform: uppercase; color: #f3f5ee; margin: 8px 0 12px; }
 .art-dek { font-family: var(--sans); font-size: 18px; line-height: 1.45; color: var(--text); margin: 0 0 14px; }
@@ -226,6 +232,10 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(255, 1
   .fn { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .fn a { padding: 10px 2px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .fn a:nth-of-type(n+5) { grid-column: span 2; }
+  .art-list.cols { grid-template-columns: minmax(0, 1fr); }
+  .art-list.cols li { border-right: 0; border-bottom: 1px solid var(--line); }
+  .art-list.cols li:last-child { border-bottom: 0; }
+  .art-all .share { width: 100%; }
   .article { padding: 18px 12px 22px; }
   .article .prose { font-size: 16px; }
   a.share { display: inline-flex; }
