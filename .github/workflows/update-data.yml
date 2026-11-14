@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
+  # GitHub runs schedules late, sometimes by hours. Any push to the site also
+  # refreshes the readings, which gives a way to force an update on demand.
+  push:
+    branches: [main]
 
 permissions:
   contents: write
