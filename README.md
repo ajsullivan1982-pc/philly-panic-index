@@ -6,9 +6,14 @@ A static site with no build step.
 
 - `index.html`: the index, team components, desk notes and the tape of official prints.
 - `methodology.html`: how the index is calculated, plus a calculator.
+- `eagles.html`, `phillies.html`, `sixers.html`, `flyers.html`: one page per team. The four files differ only in the team named in the head and on `<body>`; `assets/team.js` draws them.
+- `research.html` and `research/`: research notes. Copy `research/_template.html` for a new one; its preview image is made from `tools/article-card.html`.
+- `404.html`: shown for any address that does not exist.
+- `feed.xml`: the RSS feed (latest prints and research notes). Generated; do not edit by hand.
 - `assets/`: styles and scripts.
 - `data/ppi.js`: the published readings. Generated; do not edit by hand.
-- `tools/update-data.ps1`: rebuilds `data/ppi.js` from the Official Log.
+- `tools/update-data.ps1`: rebuilds `data/ppi.js` and `feed.xml` from the Official Log.
+- `tools/card.html`, `tools/article-card.html`, `tools/icon.html`: sources for the link-preview images and home-screen icons. Each file's first lines say how to rebuild its image.
 
 ## Daily update
 

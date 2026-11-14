@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://phillypanic.com/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://phillypanic.com/eagles.html</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://phillypanic.com/phillies.html</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://phillypanic.com/sixers.html</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://phillypanic.com/flyers.html</loc><changefreq>daily</changefreq></url>
   <url><loc>https://phillypanic.com/methodology.html</loc><changefreq>monthly</changefreq></url>
   <url><loc>https://phillypanic.com/research.html</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://phillypanic.com/research/fan-asset-disposition-policy.html</loc></url>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flyers panic · Philly Panic Index</title>
+<meta name="description" content="The Flyers panic score from the Philly Panic Index: today's reading, the six components behind it, and every official print on record.">
+<link rel="canonical" href="https://phillypanic.com/flyers.html">
+<meta property="og:title" content="Flyers panic · Philly Panic Index">
+<meta property="og:description" content="The Flyers panic score, its six components and every official print. The numbers are real. The analysis is unnecessary.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phillypanic.com/flyers.html">
+<meta property="og:site_name" content="Philly Panic Index">
+<meta property="og:image" content="https://phillypanic.com/assets/card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@phlpanicindex">
+<meta name="theme-color" content="#040605">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Philly Panic Index" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=7">
+</head>
+<!-- The four team pages are the same file apart from the team named here and in the head.
+     Everything on the page is drawn by assets/team.js from the published readings. -->
+<body data-team="flyers">
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1 class="wordmark"><a href="index.html">Philly <em>Panic</em> Index</a></h1>
+      <p class="tagline">Flyers panic. Itemized.</p>
+    </div>
+    <div class="mast-meta">
+      <div class="date" id="mast-date">&nbsp;</div>
+      <div>FLYR · Flyers</div>
+      <div id="mast-state">&nbsp;</div>
+    </div>
+  </header>
+
+  <nav class="fn" aria-label="Sections">
+    <a href="index.html#index">F1 INDEX</a>
+    <a class="on" href="index.html#teams">F2 TEAMS</a>
+    <a href="index.html#desk">F3 DESK</a>
+    <a href="index.html#tape">F4 TAPE</a>
+    <a href="methodology.html">F5 METHODOLOGY</a>
+    <a href="research.html">F6 RESEARCH</a>
+    <span class="sp"></span>
+    <a href="https://x.com/phlpanicindex" rel="noopener" aria-label="X @phlpanicindex">X <span class="handle">@phlpanicindex</span></a>
+    <a href="https://instagram.com/phlpanicindex" rel="noopener" aria-label="Instagram @phlpanicindex">IG <span class="handle">@phlpanicindex</span></a>
+  </nav>
+  <nav class="tsw" aria-label="Teams">
+    <a href="eagles.html" style="--c:var(--eagles)">BRDS <span>Eagles</span></a>
+    <a href="phillies.html" style="--c:var(--phillies)">PHLS <span>Phillies</span></a>
+    <a href="sixers.html" style="--c:var(--sixers)">SIXR <span>Sixers</span></a>
+    <a class="on" href="flyers.html" style="--c:var(--flyers)">FLYR <span>Flyers</span></a>
+  </nav>
+
+  <div id="banner"></div>
+  <noscript><div class="banner">The readings on this page need JavaScript. The latest official print is on the <a href="index.html">homepage</a>.</div></noscript>
+
+  <main>
+    <div class="grid g-hero">
+      <section class="panel">
+        <header><span>FLYR &lt;Equity&gt; Flyers</span><span>1</span></header>
+        <div class="body">
+          <div class="label">Flyers team panic score</div>
+          <div class="hero-top">
+            <div class="big num" id="score" style="color:var(--flyers)">&nbsp;</div>
+            <div class="move num" id="move"></div>
+          </div>
+          <div class="hero-status">
+            <div id="rating"></div>
+            <button type="button" class="share" id="share-team">Share this reading</button>
+          </div>
+          <div class="chart-head">
+            <span class="label">Flyers score, official prints</span>
+            <span class="chart-ctl">
+              <span class="tabs" id="tabs">
+                <button type="button" data-r="30">30D</button>
+                <button type="button" data-r="90">90D</button>
+                <button type="button" data-r="0" class="on">ALL</button>
+              </span>
+            </span>
+          </div>
+          <div class="chart-legend"><span><i style="background:var(--flyers)"></i>FLYR</span><span><i style="background:var(--dim)"></i>CITYWIDE PPI</span></div>
+          <div class="chart" id="chart"><div class="tip" id="tip"></div></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Components</span><span>2</span></header>
+        <div class="body">
+          <div class="label" style="margin-bottom:8px">Six inputs, with each one's share of the score</div>
+          <ul class="cbars" id="comps"></ul>
+          <p class="cb-weight" id="weight"></p>
+          <p class="cb-weight"><a href="methodology.html">How the score is calculated</a></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid g-two">
+      <section class="panel">
+        <header><span>The Desk · Flyers</span><span>3</span></header>
+        <div class="body">
+          <ul class="notes" id="notes"></ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Headlines · Prints that named the Flyers</span><span id="heads-count">4</span></header>
+        <div class="body">
+          <ul class="notes" id="heads"></ul>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <header><span>The Tape · Flyers prints</span><span>5</span></header>
+      <div class="scroll wide-only">
+        <table id="tape-table"></table>
+      </div>
+      <div class="narrow-only">
+        <ol class="tape-list" id="tape-list"></ol>
+        <button type="button" class="share tape-more" id="tape-more"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>
+      <p class="slogan">Updated daily and whenever disaster strikes.</p>
+      <p>PPI measures panic, not team quality. It is not a forecast, a win probability, investment advice or emotional advice.</p>
+      <p>Not affiliated with the Eagles, Phillies, Sixers, Flyers or any league.</p>
+      <p>Tips, corrections, complaints: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#106;&#64;&#112;&#104;&#105;&#108;&#108;&#121;&#112;&#97;&#110;&#105;&#99;&#46;&#99;&#111;&#109;">&#97;&#106;&#64;&#112;&#104;&#105;&#108;&#108;&#121;&#112;&#97;&#110;&#105;&#99;&#46;&#99;&#111;&#109;</a></p>
+    </div>
+    <div>
+      <p><a href="index.html">Back to the index</a> · <a href="methodology.html">Methodology</a> · <a href="feed.xml">RSS</a></p>
+      <p id="foot-data"></p>
+    </div>
+  </footer>
+</div>
+
+<script src="data/ppi.js"></script>
+<script src="assets/core.js?v=7"></script>
+<script src="assets/team.js?v=7"></script>
+<script data-goatcounter="https://phillypanic.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

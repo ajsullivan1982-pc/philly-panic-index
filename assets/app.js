@@ -82,7 +82,7 @@
         return `<td class="heat num" style="background:rgba(255,61,82,${(v / 100 * 0.8).toFixed(2)})" title="${COMPS[i].name}: ${v}${p ? ` (${ch >= 0 ? '+' : ''}${ch} vs prior print)` : ''}">${v}${mark}</td>`;
       }).join('');
       const [label, cls] = rating(t);
-      return `<tr><td class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></td><td class="score num" style="color:${t.color}">${f1(d.score)}</td><td class="num">${moveHtml(teamMove(t))}</td>${cells}<td class="num">${f1(d.weight)}%</td><td class="num">${contrib(t).toFixed(2)}</td><td>${spark(t)}</td><td class="l"><span class="rating ${cls}" style="margin:0">${label}</span></td><td><button type="button" class="share" data-share="${t.id}" aria-label="Share the ${t.name} reading">Share</button></td></tr>`;
+      return `<tr><td class="tk"><a href="${t.id}.html" style="color:${t.color}">${t.tk}<small>${t.name}</small></a></td><td class="score num" style="color:${t.color}">${f1(d.score)}</td><td class="num">${moveHtml(teamMove(t))}</td>${cells}<td class="num">${f1(d.weight)}%</td><td class="num">${contrib(t).toFixed(2)}</td><td>${spark(t)}</td><td class="l"><span class="rating ${cls}" style="margin:0">${label}</span></td><td><button type="button" class="share" data-share="${t.id}" aria-label="Share the ${t.name} reading">Share</button></td></tr>`;
     }).join('') + '</tbody>';
 
   // The same team data as cards, for screens too narrow for the table.
@@ -94,10 +94,10 @@
       return `<div class="heat" style="background:rgba(255,61,82,${(v / 100 * 0.8).toFixed(2)})"><span>${COMPS[i].short}</span><b class="num">${v}${ch > 0 ? ' ▲' : ch < 0 ? ' ▼' : ''}</b></div>`;
     }).join('');
     return `<article class="tcard" style="border-left-color:${t.color}">
-      <div class="tcard-top"><div class="tk" style="color:${t.color}">${t.tk}<small>${t.name}</small></div><div class="score num" style="color:${t.color}">${f1(d.score)}</div><div class="num">${moveHtml(teamMove(t))}</div></div>
+      <div class="tcard-top"><div class="tk"><a href="${t.id}.html" style="color:${t.color}">${t.tk}<small>${t.name}</small></a></div><div class="score num" style="color:${t.color}">${f1(d.score)}</div><div class="num">${moveHtml(teamMove(t))}</div></div>
       <div class="tcard-comps">${comps}</div>
       <div class="tcard-foot"><span class="dim num">City wt ${f1(d.weight)}% · Contrib ${contrib(t).toFixed(2)}</span><span class="rating ${cls}" style="margin:0">${label}</span></div>
-      <button type="button" class="share" data-share="${t.id}">Share ${t.tk}</button>
+      <div class="tcard-btns"><a class="share" href="${t.id}.html">${t.name} page</a><button type="button" class="share" data-share="${t.id}">Share ${t.tk}</button></div>
     </article>`;
   }).join('');
 
