@@ -1,4 +1,4 @@
-// Shared constants and helpers for the homepage, the methodology page and the team pages.
+// Shared constants and helpers for the homepage, the methodology page, the team pages and the weekly report.
 window.PPI = (function () {
   const TEAMS = [
     { id: 'eagles', name: 'Eagles', tk: 'BRDS', color: 'var(--eagles)' },

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Panic Report · Philly Panic Index</title>
+<meta name="description" content="The Weekly Panic Report from the Philly Panic Index: the week's open, high, low and close, the biggest mover, and every day's headline.">
+<link rel="canonical" href="https://phillypanic.com/weekly.html">
+<meta property="og:title" content="Weekly Panic Report · Philly Panic Index">
+<meta property="og:description" content="One week of Philadelphia sports panic, summarized like a market wrap. The numbers are real. The analysis is unnecessary.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phillypanic.com/weekly.html">
+<meta property="og:site_name" content="Philly Panic Index">
+<meta property="og:image" content="https://phillypanic.com/assets/card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@phlpanicindex">
+<meta name="theme-color" content="#040605">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Philly Panic Index" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=8">
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <h1 class="wordmark"><a href="index.html">Philly <em>Panic</em> Index</a></h1>
+      <p class="tagline">The Weekly Panic Report. Seven days of it, summarized.</p>
+    </div>
+    <div class="mast-meta">
+      <div class="date" id="mast-date">&nbsp;</div>
+      <div id="mast-span">&nbsp;</div>
+      <div id="mast-state">&nbsp;</div>
+    </div>
+  </header>
+
+  <nav class="fn" aria-label="Sections">
+    <a href="index.html#index">F1 INDEX</a>
+    <a href="index.html#teams">F2 TEAMS</a>
+    <a href="index.html#desk">F3 DESK</a>
+    <a href="index.html#tape">F4 TAPE</a>
+    <a href="methodology.html">F5 METHODOLOGY</a>
+    <a href="research.html">F6 RESEARCH</a>
+    <a class="on" href="weekly.html">F7 WEEKLY</a>
+    <span class="sp"></span>
+    <a href="https://x.com/phlpanicindex" rel="noopener" aria-label="X @phlpanicindex">X <span class="handle">@phlpanicindex</span></a>
+    <a href="https://instagram.com/phlpanicindex" rel="noopener" aria-label="Instagram @phlpanicindex">IG <span class="handle">@phlpanicindex</span></a>
+  </nav>
+
+  <div id="banner"></div>
+  <noscript><div class="banner">The weekly report needs JavaScript. The latest official print is on the <a href="index.html">homepage</a>.</div></noscript>
+
+  <main>
+    <div class="wk-nav">
+      <button type="button" class="share" id="wk-prev" aria-label="Earlier week">◄ Earlier</button>
+      <span id="wk-label">&nbsp;</span>
+      <button type="button" class="share" id="wk-next" aria-label="Later week">Later ►</button>
+    </div>
+
+    <div class="grid g-hero">
+      <section class="panel">
+        <header><span id="wk-head">PPI &lt;Weekly&gt;</span><span>1</span></header>
+        <div class="body">
+          <div class="label">The week in one line</div>
+          <p class="wk-lede" id="lede"></p>
+          <div class="ohlc" id="ohlc"></div>
+          <p class="wk-basis" id="basis"></p>
+          <button type="button" class="share" id="share-week">Share this report</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header><span>Mover of the week</span><span>2</span></header>
+        <div class="body">
+          <div class="wk-mover" id="mover"></div>
+          <div class="label" style="margin:16px 0 4px">The board, week over week</div>
+          <table id="board"></table>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <header><span>The week's headlines</span><span>3</span></header>
+      <div class="body">
+        <ul class="notes" id="heads"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>
+      <p class="slogan">Updated daily and whenever disaster strikes.</p>
+      <p>PPI measures panic, not team quality. It is not a forecast, a win probability, investment advice or emotional advice.</p>
+      <p>Not affiliated with the Eagles, Phillies, Sixers, Flyers or any league.</p>
+      <p>Tips, corrections, complaints: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#106;&#64;&#112;&#104;&#105;&#108;&#108;&#121;&#112;&#97;&#110;&#105;&#99;&#46;&#99;&#111;&#109;">&#97;&#106;&#64;&#112;&#104;&#105;&#108;&#108;&#121;&#112;&#97;&#110;&#105;&#99;&#46;&#99;&#111;&#109;</a></p>
+    </div>
+    <div>
+      <p><a href="index.html">Back to the index</a> · <a href="research.html">Research</a> · <a href="feed.xml">RSS</a></p>
+      <p id="foot-data"></p>
+    </div>
+  </footer>
+</div>
+
+<script src="data/ppi.js"></script>
+<script src="assets/core.js?v=8"></script>
+<script src="assets/weekly.js?v=8"></script>
+<script data-goatcounter="https://phillypanic.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

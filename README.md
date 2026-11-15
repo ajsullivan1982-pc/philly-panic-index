@@ -8,6 +8,7 @@ A static site with no build step.
 - `methodology.html`: how the index is calculated, plus a calculator.
 - `eagles.html`, `phillies.html`, `sixers.html`, `flyers.html`: one page per team. The four files differ only in the team named in the head and on `<body>`; `assets/team.js` draws them.
 - `research.html` and `research/`: research notes. Copy `research/_template.html` for a new one; its preview image is made from `tools/article-card.html`.
+- `weekly.html`: the Weekly Panic Report, one Monday-to-Sunday week summarized. Drawn by `assets/weekly.js`; it needs no upkeep.
 - `404.html`: shown for any address that does not exist.
 - `feed.xml`: the RSS feed (latest prints and research notes). Generated; do not edit by hand.
 - `assets/`: styles and scripts.
