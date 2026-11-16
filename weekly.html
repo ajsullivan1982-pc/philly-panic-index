@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
 <div class="wrap">
@@ -91,6 +91,34 @@
         <ul class="notes" id="heads"></ul>
       </div>
     </section>
+
+    <!-- Newsletter signup. Switched off for now: to turn it on, paste the Beehiiv embed code into the marked slot and delete the word "hidden" below. The same block is on index.html; keep the two in step. -->
+    <section class="panel nl" id="newsletter" hidden>
+      <header><span>The Weekly Panic Report · By email</span><span>4</span></header>
+      <div class="body">
+        <div>
+          <h2>Get the Weekly Panic Report</h2>
+          <p>One email a week, on Monday morning: the week's open, high, low and close, the biggest mover and every day's headline. No daily emails. Unsubscribe any time.</p>
+        </div>
+        <div>
+          <div class="nl-form"><!-- BEEHIIV EMBED CODE GOES HERE --></div>
+          <p class="nl-fine">Your address goes to Beehiiv, which sends the email. It is used for nothing else.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Desk's tool for the Monday email. Hidden unless the address ends in ?email=1. -->
+    <section class="panel em" id="email-panel" hidden>
+      <header><span>Email edition · Desk use</span><span>5</span></header>
+      <div class="body">
+        <p class="em-warn banner" id="em-warn" hidden>THIS WEEK IS STILL IN PROGRESS. Use Earlier to pick a finished week before copying.</p>
+        <div class="em-row"><span class="label">Subject</span><span class="em-val" id="em-subject"></span><button type="button" class="share" id="em-copy-subject">Copy</button></div>
+        <div class="em-row"><span class="label">Preview text</span><span class="em-val" id="em-preview"></span><button type="button" class="share" id="em-copy-preview">Copy</button></div>
+        <p class="em-how">Copy the report, then paste it into this week's Beehiiv post where it says PASTE THE REPORT HERE. The week ahead and From the Research Desk are yours to write.</p>
+        <button type="button" class="share" id="em-copy-body">Copy report for email</button>
+        <div class="em-body" id="em-body"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="foot">
@@ -108,8 +136,8 @@
 </div>
 
 <script src="data/ppi.js"></script>
-<script src="assets/core.js?v=8"></script>
-<script src="assets/weekly.js?v=8"></script>
+<script src="assets/core.js?v=9"></script>
+<script src="assets/weekly.js?v=9"></script>
 <script data-goatcounter="https://phillypanic.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

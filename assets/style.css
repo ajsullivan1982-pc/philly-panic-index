@@ -264,6 +264,27 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(255, 1
 .wk-mover .n { font-family: var(--display); font-size: clamp(40px, 8vw, 58px); line-height: 1; }
 .wk-mover p { font-family: var(--sans); font-size: 14px; line-height: 1.4; margin: 0; }
 
+/* Newsletter signup (homepage and weekly report) */
+.nl { margin-top: 12px; }
+.nl > .body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px 28px; align-items: center; }
+.nl h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 4vw, 30px); line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; color: #f3f5ee; margin: 0 0 6px; }
+.nl p { font-family: var(--sans); font-size: 14px; line-height: 1.45; margin: 0; max-width: 60ch; }
+.nl-form { min-height: 46px; }
+.nl-form iframe { display: block; width: 100%; max-width: 100%; border: 0; }
+.nl p.nl-fine { font-family: var(--mono); font-size: 11px; color: var(--dim); margin-top: 6px; }
+
+/* Weekly report: the email edition (weekly.html?email=1) */
+[hidden] { display: none !important; }
+.em { margin-top: 12px; }
+.em-row { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.em-val { font-family: var(--sans); font-size: 14px; color: #f3f5ee; overflow-wrap: anywhere; }
+.em-how { font-family: var(--sans); font-size: 14px; line-height: 1.4; color: var(--dim); margin: 12px 0 10px; max-width: 72ch; }
+.em-body { border: 1px dashed var(--line-2); background: var(--bg); margin-top: 12px; padding: 4px 14px 10px; font-family: var(--sans); font-size: 14px; line-height: 1.5; overflow-x: auto; }
+.em-body h2 { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); margin: 18px 0 6px; }
+.em-body p { margin: 0 0 10px; max-width: 72ch; }
+.em-body table { width: auto; min-width: min(100%, 420px); margin: 0 0 10px; font-family: var(--mono); }
+.em-body td p, .em-body th p { margin: 0; }
+
 @media (max-width: 820px) {
   /* Menu: a tidy grid instead of ragged wrapping. Four across, then two, then three. */
   .fn { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
@@ -300,4 +321,8 @@ a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(255, 1
   .mast-meta { text-align: left; }
   .calc-row { grid-template-columns: 1fr 44px 64px; }
   .calc-row label { grid-column: 1 / -1; }
+  .nl > .body { grid-template-columns: minmax(0, 1fr); }
+  .em-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .em-row .label { grid-column: 1 / -1; }
+  #em-copy-body { width: 100%; }
 }

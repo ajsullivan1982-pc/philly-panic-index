@@ -8,7 +8,7 @@ A static site with no build step.
 - `methodology.html`: how the index is calculated, plus a calculator.
 - `eagles.html`, `phillies.html`, `sixers.html`, `flyers.html`: one page per team. The four files differ only in the team named in the head and on `<body>`; `assets/team.js` draws them.
 - `research.html` and `research/`: research notes. Copy `research/_template.html` for a new one; its preview image is made from `tools/article-card.html`.
-- `weekly.html`: the Weekly Panic Report, one Monday-to-Sunday week summarized. Drawn by `assets/weekly.js`; it needs no upkeep.
+- `weekly.html`: the Weekly Panic Report, one Monday-to-Sunday week summarized. Drawn by `assets/weekly.js`; it needs no upkeep. Adding `?email=1` to the address shows the copy-for-email panel used for the newsletter.
 - `404.html`: shown for any address that does not exist.
 - `feed.xml`: the RSS feed (latest prints and research notes). Generated; do not edit by hand.
 - `assets/`: styles and scripts.
@@ -47,5 +47,32 @@ Automatic. Nothing to run.
    ```
 
 Rows marked VERIFYING or BLOCKED are skipped. If today's row is missing, the site says so and shows the last official reading with its date; it never presents an old reading as today's.
+
+## Weekly newsletter
+
+The Weekly Panic Report goes out by email once a week, on Monday morning, from Beehiiv (beehiiv.com, signed in as the site's contact address). About 10 minutes a week.
+
+Automatic:
+
+- `weekly.html` works out the finished week from `data/ppi.js`: the one-line summary, open/high/low/close, mover of the week, the board and each day's headline. The jokes are canned lines picked by the numbers.
+- Not switched on yet: a signup panel is built into `index.html` and `weekly.html` but hidden. To turn it on, publish the form "phillypanic.com signup" in Beehiiv (Subscribers > Subscribe forms), paste its embed code into the slot marked BEEHIIV EMBED CODE GOES HERE on both pages, and delete the word `hidden` from the `<section ... id="newsletter" hidden>` line. Until then people can only subscribe on the Beehiiv page itself. The site stores no addresses either way.
+- The look of the email (dark background, colours, the header and the footer) lives in the Beehiiv post template "Weekly Panic Report".
+
+Each Monday, after the 5:00 AM print is on the site:
+
+1. Open https://phillypanic.com/weekly.html?email=1. It shows the week that just ended (Monday to Sunday). Check the numbers look right.
+2. In Beehiiv: Start writing > Use a template > Weekly Panic Report.
+3. On the site, press Copy next to Subject and paste it into the post's title and subject line. Do the same with Preview text (subtitle and preview text).
+4. Press "Copy report for email". In the Beehiiv post, select the line that starts PASTE THE REPORT HERE and paste over it.
+5. Write the two sections that are yours: The week ahead (games and dates that could move the number) and From the Research Desk (a short paragraph, or a link to the newest note in `research/`). Nothing fills these in for you, and nothing should be invented: if there is nothing to say, delete the section.
+6. Preview, send yourself a test if anything looks off, then send or schedule.
+
+Things to know:
+
+- Every figure in the pasted report comes from `data/ppi.js`. To change the wording of the canned lines, edit `assets/weekly.js`; the page and the email share it.
+- `weekly.html?email=1&w=YYYY-MM-DD` (the week's Monday) prepares an older week. A week still in progress shows a warning.
+- If the copy button fails, select the text in the dashed box and copy it by hand.
+- The signup form's colours and wording are edited in Beehiiv (Subscribers > Subscribe forms), then Publish. Once the panel is on, the embed code on the site does not need changing.
+- Emails come from a Beehiiv address. Sending from a phillypanic.com address needs a paid Beehiiv plan and extra DNS records; the records that point phillypanic.com at GitHub Pages must stay as they are.
 
 To preview locally, run `python -m http.server 8417` in this folder and open http://localhost:8417.
