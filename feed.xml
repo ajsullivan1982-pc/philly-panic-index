@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Sun, 15 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 16 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 65.3, down 0.1. HIGH ANXIETY. Nov 16 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-16 05:00 ET</guid>
+    <pubDate>Mon, 16 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Sixers beat Indiana 131-124 to improve to 11-3; the Flyers fell 5-2 to Edmonton after allowing two first-period power-play goals.</description>
+  </item>
   <item>
     <title>PPI 65.4, down 0.9. HIGH ANXIETY. Nov 15 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="false">ppi:2026-10-18 05:00 ET</guid>
     <pubDate>Sun, 18 Oct 2026 09:00:00 GMT</pubDate>
     <description>Flyers beat Ottawa 3-1 for first win, ending nine-game winless start and easing citywide panic despite Tippett's absence; Eagles place Hurts on IR for superficial calf blood clot.</description>
-  </item>
-  <item>
-    <title>PPI 80.6, unchanged. WOODER BOILING. Oct 17 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-17 05:00 ET</guid>
-    <pubDate>Sat, 17 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Eagles rule out Jalen Hurts (superficial calf blood clot), Saquon Barkley and three more players for Carolina; Will Shipley is placed on IR, while DeVonta Smith and Jonathan Greenard are cleared.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
