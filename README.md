@@ -55,7 +55,7 @@ The Weekly Panic Report goes out by email once a week, on Monday morning, from B
 Automatic:
 
 - `weekly.html` works out the finished week from `data/ppi.js`: the one-line summary, open/high/low/close, mover of the week, the board and each day's headline. The jokes are canned lines picked by the numbers.
-- Not switched on yet: a signup panel is built into `index.html` and `weekly.html` but hidden. To turn it on, publish the form "phillypanic.com signup" in Beehiiv (Subscribers > Subscribe forms), paste its embed code into the slot marked BEEHIIV EMBED CODE GOES HERE on both pages, and delete the word `hidden` from the `<section ... id="newsletter" hidden>` line. Until then people can only subscribe on the Beehiiv page itself. The site stores no addresses either way.
+- The signup panel on `index.html` and `weekly.html` shows the Beehiiv form "phillypanic.com signup" (Subscribers > Subscribe forms). New subscribers get the welcome email set under Beehiiv's Settings > Emails > Preset Emails. To hide the panel again, add the word `hidden` after `id="newsletter"` on both pages. The site itself stores no addresses.
 - The look of the email (dark background, colours, the header and the footer) lives in the Beehiiv post template "Weekly Panic Report".
 - Every Monday at about 6:30 AM a scheduled task in the Claude app, "Weekly Panic Report: Monday draft", builds the week's post as a Beehiiv **draft**. It fills in the report, a first draft of From the Research Desk and "Three things to say at the bar" (three real stories from the week's log, each ending on a line you can say out loud). It never sends or schedules anything. It runs while the Claude app is open; if the app is closed, it runs the next time the app starts. Find it under Scheduled in the app's sidebar.
 - "Three things to say at the bar" is in the email only, not on the website. It is a reason to subscribe.
@@ -74,7 +74,7 @@ Things to know:
 - Every figure in the pasted report comes from `data/ppi.js`. To change the wording of the canned lines, edit `assets/weekly.js`; the page and the email share it.
 - `weekly.html?email=1&w=YYYY-MM-DD` (the week's Monday) prepares an older week. A week still in progress shows a warning.
 - If the copy button fails, select the text in the dashed box and copy it by hand.
-- The signup form's colours and wording are edited in Beehiiv (Subscribers > Subscribe forms), then Publish. Once the panel is on, the embed code on the site does not need changing.
+- The signup form's colours and wording are edited in Beehiiv (Subscribers > Subscribe forms), then Publish. The embed code on the site does not need changing.
 - Emails come from a Beehiiv address. Sending from a phillypanic.com address needs a paid Beehiiv plan and extra DNS records; the records that point phillypanic.com at GitHub Pages must stay as they are.
 
 To preview locally, run `python -m http.server 8417` in this folder and open http://localhost:8417.
