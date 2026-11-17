@@ -57,14 +57,16 @@ Automatic:
 - `weekly.html` works out the finished week from `data/ppi.js`: the one-line summary, open/high/low/close, mover of the week, the board and each day's headline. The jokes are canned lines picked by the numbers.
 - Not switched on yet: a signup panel is built into `index.html` and `weekly.html` but hidden. To turn it on, publish the form "phillypanic.com signup" in Beehiiv (Subscribers > Subscribe forms), paste its embed code into the slot marked BEEHIIV EMBED CODE GOES HERE on both pages, and delete the word `hidden` from the `<section ... id="newsletter" hidden>` line. Until then people can only subscribe on the Beehiiv page itself. The site stores no addresses either way.
 - The look of the email (dark background, colours, the header and the footer) lives in the Beehiiv post template "Weekly Panic Report".
+- Every Monday at about 6:30 AM a scheduled task in the Claude app, "Weekly Panic Report: Monday draft", builds the week's post as a Beehiiv **draft**. It fills in the report, a first draft of From the Research Desk and "Three things to say at the bar" (three real stories from the week's log, each ending on a line you can say out loud). It never sends or schedules anything. It runs while the Claude app is open; if the app is closed, it runs the next time the app starts. Find it under Scheduled in the app's sidebar.
+- "Three things to say at the bar" is in the email only, not on the website. It is a reason to subscribe.
 
-Each Monday, after the 5:00 AM print is on the site:
+Each Monday, once the draft is in Beehiiv (Posts > Drafts), open it, write The week ahead, read the rest, fix anything you don't like, then send. If the task didn't run, do it by hand:
 
 1. Open https://phillypanic.com/weekly.html?email=1. It shows the week that just ended (Monday to Sunday). Check the numbers look right.
 2. In Beehiiv: Start writing > Use a template > Weekly Panic Report.
 3. On the site, press Copy next to Subject and paste it into the post's title and subject line. Do the same with Preview text (subtitle and preview text).
 4. Press "Copy report for email". In the Beehiiv post, select the line that starts PASTE THE REPORT HERE and paste over it.
-5. Write the two sections that are yours: The week ahead (games and dates that could move the number) and From the Research Desk (a short paragraph, or a link to the newest note in `research/`). Nothing fills these in for you, and nothing should be invented: if there is nothing to say, delete the section.
+5. Write the three sections that are yours: Three things to say at the bar (three real stories from the week, using only what's in the Official Log), The week ahead (games and dates that could move the number) and From the Research Desk (a short paragraph, or a link to the newest note in `research/`). Nothing should be invented: if there is nothing to say, say so or delete the section.
 6. Preview, send yourself a test if anything looks off, then send or schedule.
 
 Things to know:
