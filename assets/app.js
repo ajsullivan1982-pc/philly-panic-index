@@ -125,11 +125,23 @@
     share(`${t.tk} ${f1(cur.teams[t.id].score)} (${signed(teamMove(t))}): ${t.name} panic, ${dateShort(cur.date)} official print. Citywide PPI ${f1(cur.city)}, ${cur.status}. via @phlpanicindex`, `share-${t.id}`);
   });
 
-  // Attribution
-  $('stack').innerHTML = byWeight.map(t => {
-    const share = contrib(t) / totalContrib * 100;
-    return `<div style="width:${share}%;background:${t.color}" title="${t.name}: ${share.toFixed(1)}%">${share >= 8 ? t.tk : ''}</div>`;
-  }).join('');
+  // Attribution: a pie, slices clockwise from twelve o'clock.
+  {
+    const R = 48;
+    const pt = (frac, r) => [(50 + r * Math.sin(frac * 2 * Math.PI)).toFixed(2), (50 - r * Math.cos(frac * 2 * Math.PI)).toFixed(2)];
+    let at = 0;
+    const slices = byWeight.map(t => {
+      const frac = contrib(t) / totalContrib, share = frac * 100;
+      const [x1, y1] = pt(at, R), [x2, y2] = pt(at + frac, R), [lx, ly] = pt(at + frac / 2, R * 0.62);
+      const title = `<title>${t.name}: ${share.toFixed(1)}%</title>`;
+      const shape = frac >= 0.9999
+        ? `<circle cx="50" cy="50" r="${R}" fill="${t.color}">${title}</circle>`
+        : `<path d="M50 50L${x1} ${y1}A${R} ${R} 0 ${frac > 0.5 ? 1 : 0} 1 ${x2} ${y2}Z" fill="${t.color}">${title}</path>`;
+      at += frac;
+      return shape + (share >= 8 ? `<text x="${lx}" y="${ly}" class="pie-tk">${t.tk}</text>` : '');
+    }).join('');
+    $('pie').innerHTML = `<svg viewBox="0 0 100 100" role="img" aria-label="Share of citywide panic by team">${slices}</svg>`;
+  }
   $('legend').innerHTML = byWeight.map(t =>
     `<div><i style="background:${t.color}"></i><b>${t.name}</b><br><span class="dim num">${contrib(t).toFixed(2)} pts · ${(contrib(t) / totalContrib * 100).toFixed(1)}% of total</span></div>`).join('');
 

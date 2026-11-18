@@ -120,10 +120,19 @@ td.wrap-cell { text-align: left; white-space: normal; min-width: 260px; font-fam
 .score { font-family: var(--display); font-size: 22px; line-height: 1; }
 tr.cur td { background: var(--panel-2); }
 
-/* Attribution bar */
-.stack { display: flex; height: 34px; border: 1px solid var(--line-2); }
-.stack div { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #050706; overflow: hidden; min-width: 0; }
-.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 16px; margin-top: 12px; font-size: 12px; }
+/* Attribution pie */
+.attr { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 4px; }
+.pie svg { display: block; width: 100%; height: auto; }
+.pie path, .pie circle { stroke: var(--panel); stroke-width: 0.8; stroke-linejoin: round; }
+.pie path:hover, .pie circle:hover { opacity: 0.85; }
+.pie text { text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.pie .pie-tk { font-family: var(--mono); font-size: 5px; font-weight: 600; fill: #050706; }
+.legend { display: grid; grid-template-columns: 1fr; gap: 10px; font-size: 12px; }
+@media (max-width: 520px) {
+  .attr { grid-template-columns: 1fr; justify-items: center; }
+  .pie { width: min(240px, 100%); }
+  .legend { grid-template-columns: 1fr 1fr; width: 100%; }
+}
 .legend i { display: inline-block; width: 9px; height: 9px; margin-right: 6px; }
 .legend b { font-weight: 500; color: #fff; }
 

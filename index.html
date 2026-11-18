@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/style.css?v=10">
 </head>
 <body>
 
@@ -121,8 +121,10 @@
         <header><span>Panic attribution</span><span>4</span></header>
         <div class="body">
           <div class="label" style="margin-bottom:8px">Share of citywide panic, by source</div>
-          <div class="stack" id="stack"></div>
-          <div class="legend" id="legend"></div>
+          <div class="attr">
+            <div class="pie" id="pie"></div>
+            <div class="legend" id="legend"></div>
+          </div>
         </div>
       </section>
 
@@ -200,7 +202,7 @@
 
 <script src="data/ppi.js"></script>
 <script src="assets/core.js?v=9"></script>
-<script src="assets/app.js?v=9"></script>
+<script src="assets/app.js?v=10"></script>
 <script data-goatcounter="https://phillypanic.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
