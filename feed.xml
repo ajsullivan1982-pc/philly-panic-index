@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Tue, 17 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 18 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 64.0, down 0.4. CONCERNED. Nov 18 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-18 05:00 ET</guid>
+    <pubDate>Wed, 18 Nov 2026 10:00:00 GMT</pubDate>
+    <description>Flyers rallied from two one-goal deficits to beat Buffalo 4-3 and improve to 3-1-1 over five games; Jaylen Brown is out against Orlando with a left hamstring strain.</description>
+  </item>
   <item>
     <title>PPI 64.4, down 0.9. CONCERNED. Nov 17 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="false">ppi:2026-10-20 05:00 ET</guid>
     <pubDate>Tue, 20 Oct 2026 09:00:00 GMT</pubDate>
     <description>Hurts' updated diagnosis bars contact football indefinitely; Flyers beat Colorado3-2 for a second straight win, offsetting increased Eagles and Sixers availability pressure.</description>
-  </item>
-  <item>
-    <title>PPI 79.9, up 1.5. HIGH ANXIETY. Oct 19 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-19 05:00 ET</guid>
-    <pubDate>Mon, 19 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Eagles lose25-14 to Carolina, fall to2-4 with fourth straight defeat and35 rushing yards; new Eagles and Flyers injuries add pressure while Sixers reserve availability remains uncertain.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
