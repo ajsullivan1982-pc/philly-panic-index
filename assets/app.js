@@ -141,6 +141,20 @@
       return shape + (share >= 8 ? `<text x="${lx}" y="${ly}" class="pie-tk">${t.tk}</text>` : '');
     }).join('');
     $('pie').innerHTML = `<svg viewBox="0 0 100 100" role="img" aria-label="Share of citywide panic by team">${slices}</svg>`;
+
+    // How the shares add up, and how each team's share moved since the prior print.
+    const pContrib = t => prev ? prev.teams[t.id].score * prev.teams[t.id].weight / 100 : null;
+    const pTotal = prev ? TEAMS.reduce((s, t) => s + pContrib(t), 0) : null;
+    $('attr-math').innerHTML = '<tr><th>Team</th><th>Score</th><th>Weight</th><th>Points</th><th>Share</th><th title="Change in share since the prior print, in points">Chg</th></tr>' +
+      byWeight.map(t => {
+        const d = cur.teams[t.id], share = contrib(t) / totalContrib * 100;
+        const chg = prev && pTotal ? r1(share - pContrib(t) / pTotal * 100) : null;
+        return `<tr><td style="color:${t.color}">${t.tk}</td><td class="num">${f1(d.score)}</td><td class="num">${f1(d.weight)}%</td>` +
+          `<td class="num">${contrib(t).toFixed(2)}</td><td class="num">${share.toFixed(1)}%</td>` +
+          `<td class="num">${chg === null ? '–' : moveHtml(chg)}</td></tr>`;
+      }).join('') +
+      `<tr class="tot"><td>Total</td><td></td><td class="num">${f1(TEAMS.reduce((s, t) => s + cur.teams[t.id].weight, 0))}%</td>` +
+      `<td class="num">${totalContrib.toFixed(2)}</td><td class="num">100%</td><td></td></tr>`;
   }
   $('legend').innerHTML = byWeight.map(t =>
     `<div><i style="background:${t.color}"></i><b>${t.name}</b><br><span class="dim num">${contrib(t).toFixed(2)} pts · ${(contrib(t) / totalContrib * 100).toFixed(1)}% of total</span></div>`).join('');

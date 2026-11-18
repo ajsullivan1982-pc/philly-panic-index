@@ -121,7 +121,8 @@ td.wrap-cell { text-align: left; white-space: normal; min-width: 260px; font-fam
 tr.cur td { background: var(--panel-2); }
 
 /* Attribution pie */
-.attr { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 4px; }
+.attr-math tr.tot td { border-bottom: 0; border-top: 1px solid var(--line-2); color: #f3f5ee; font-weight: 500; }
+.attr { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 4px; }
 .pie svg { display: block; width: 100%; height: auto; }
 .pie path, .pie circle { stroke: var(--panel); stroke-width: 0.8; stroke-linejoin: round; }
 .pie path:hover, .pie circle:hover { opacity: 0.85; }
@@ -132,6 +133,7 @@ tr.cur td { background: var(--panel-2); }
   .attr { grid-template-columns: 1fr; justify-items: center; }
   .pie { width: min(240px, 100%); }
   .legend { grid-template-columns: 1fr 1fr; width: 100%; }
+  .attr-math th, .attr-math td { padding: 6px 4px; }
 }
 .legend i { display: inline-block; width: 9px; height: 9px; margin-right: 6px; }
 .legend b { font-weight: 500; color: #fff; }
