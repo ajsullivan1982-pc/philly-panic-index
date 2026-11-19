@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Wed, 18 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 19 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 63.5, down 0.5. CONCERNED. Nov 19 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-19 05:00 ET</guid>
+    <pubDate>Thu, 19 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Sixers rallied from 17 down to beat Orlando 121-116 and improve to 13-3; DeVonta Smith and Dontayvion Wicks returned to Eagles practice.</description>
+  </item>
   <item>
     <title>PPI 64.0, down 0.4. CONCERNED. Nov 18 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="false">ppi:2026-10-21 05:00 ET</guid>
     <pubDate>Wed, 21 Oct 2026 09:00:00 GMT</pubDate>
     <description>Sixers open with 106-100 win over defending champion Knicks; approved seasonal Sixers/Flyers weight swap accounts for most of the citywide decline.</description>
-  </item>
-  <item>
-    <title>PPI 79.1, down 0.8. HIGH ANXIETY. Oct 20 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-20 05:00 ET</guid>
-    <pubDate>Tue, 20 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Hurts' updated diagnosis bars contact football indefinitely; Flyers beat Colorado3-2 for a second straight win, offsetting increased Eagles and Sixers availability pressure.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
