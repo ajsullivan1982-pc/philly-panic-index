@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Thu, 19 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 20 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 62.9, down 0.6. CONCERNED. Nov 20 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-20 05:00 ET</guid>
+    <pubDate>Fri, 20 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Flyers erased a 5-2 third-period deficit to beat Ottawa 6-5 in overtime, their fourth win in six games.</description>
+  </item>
   <item>
     <title>PPI 63.5, down 0.5. CONCERNED. Nov 19 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="false">ppi:2026-10-22 05:00 ET</guid>
     <pubDate>Thu, 22 Oct 2026 09:00:00 GMT</pubDate>
     <description>Flyers beat Buffalo 3-1 for a third straight win as Cole Knuble scored his first two NHL goals and Tyson Foerster returned.</description>
-  </item>
-  <item>
-    <title>PPI 72.4, down 6.7. HIGH ANXIETY. Oct 21 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-21 05:00 ET</guid>
-    <pubDate>Wed, 21 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Sixers open with 106-100 win over defending champion Knicks; approved seasonal Sixers/Flyers weight swap accounts for most of the citywide decline.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
