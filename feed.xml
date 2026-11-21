@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Fri, 20 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 21 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 62.9, unchanged. CONCERNED. Nov 21 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-21 05:00 ET</guid>
+    <pubDate>Sat, 21 Nov 2026 10:00:00 GMT</pubDate>
+    <description>Eagles ruled Zack Baun and Dontayvion Wicks out; Sixers forward Dominick Barlow was upgraded to probable.</description>
+  </item>
   <item>
     <title>PPI 62.9, down 0.6. CONCERNED. Nov 20 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="false">ppi:2026-10-23 05:00 ET</guid>
     <pubDate>Fri, 23 Oct 2026 09:00:00 GMT</pubDate>
     <description>Sixers erased a 29-point deficit to beat Cleveland 114-106 and reach 2-0; Phillies immediate elimination anxiety decayed toward an offseason structural baseline.</description>
-  </item>
-  <item>
-    <title>PPI 71.1, down 1.3. HIGH ANXIETY. Oct 22 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-22 05:00 ET</guid>
-    <pubDate>Thu, 22 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Flyers beat Buffalo 3-1 for a third straight win as Cole Knuble scored his first two NHL goals and Tyson Foerster returned.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
