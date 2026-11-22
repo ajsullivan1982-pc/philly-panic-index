@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Sat, 21 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 22 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 62.3, down 0.6. CONCERNED. Nov 22 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-22 05:00 ET</guid>
+    <pubDate>Sun, 22 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Flyers beat Montreal 4-3 for their third straight win; Noah Cates scored with 31 seconds left.</description>
+  </item>
   <item>
     <title>PPI 62.9, unchanged. CONCERNED. Nov 21 official print</title>
     <link>https://phillypanic.com/</link>
@@ -223,13 +230,6 @@
     <guid isPermaLink="true">https://phillypanic.com/research/sixers-2-0-risk-desk-has-doubts.html</guid>
     <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
     <description>Two games in, the Sixers have beaten two good teams and erased a 29-point deficit. The Risk Desk has requested further evidence before reserving its spot on the parade route.</description>
-  </item>
-  <item>
-    <title>PPI 69.7, down 1.4. HIGH ANXIETY. Oct 23 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-23 05:00 ET</guid>
-    <pubDate>Fri, 23 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Sixers erased a 29-point deficit to beat Cleveland 114-106 and reach 2-0; Phillies immediate elimination anxiety decayed toward an offseason structural baseline.</description>
   </item>
   <item>
     <title>Research: PPI Fan Asset Disposition Policy</title>
