@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Sun, 22 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Mon, 23 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 60.2, down 2.1. CONCERNED. Nov 23 official print</title>
+    <link>https://phillypanic.com/</link>
+    <guid isPermaLink="false">ppi:2026-11-23 05:00 ET</guid>
+    <pubDate>Mon, 23 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Eagles beat Pittsburgh 19-16 to end a seven-game losing streak; Saquon Barkley left with an upper-body injury.</description>
+  </item>
   <item>
     <title>PPI 62.3, down 0.6. CONCERNED. Nov 22 official print</title>
     <link>https://phillypanic.com/</link>
@@ -216,13 +223,6 @@
     <guid isPermaLink="false">ppi:2026-10-25 05:00 ET</guid>
     <pubDate>Sun, 25 Oct 2026 09:00:00 GMT</pubDate>
     <description>Joel Embiid’s triple-double powered the LeBron-less Sixers to 3-0; the Flyers’ blown two-goal lead partly offset the citywide relief.</description>
-  </item>
-  <item>
-    <title>PPI 69.9, up 0.2. HIGH ANXIETY. Oct 24 official print</title>
-    <link>https://phillypanic.com/</link>
-    <guid isPermaLink="false">ppi:2026-10-24 05:00 ET</guid>
-    <pubDate>Sat, 24 Oct 2026 09:00:00 GMT</pubDate>
-    <description>LeBron James was newly questionable for Milwaukee with low-back/sciatica management; improving Flyers defensive availability partly offset the Sixers roster-risk increase.</description>
   </item>
   <item>
     <title>Research: The Sixers are 2–0. The vibes are at a record high. The Risk Desk Has Doubts.</title>
