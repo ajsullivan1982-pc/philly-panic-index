@@ -4,6 +4,8 @@
 (function () {
   const { TEAMS, COMPS, readings, f1, r1, esc, dir, arrow, moveHtml, day, dayDiff, dateShort, dateLong, todayET } = window.PPI;
   const $ = id => document.getElementById(id);
+  // Each print has its own page, written by tools/site-pages.ps1.
+  const printLink = r => `<a href="/prints/${r.date}.html">${dateLong(r.date)}</a>`;
   const team = TEAMS.find(t => t.id === document.body.dataset.team);
   if (!team) return;
 
@@ -95,7 +97,7 @@
   const named = readings.map((r, i) => ({ r, i })).filter(x => names.test(x.r.driver)).reverse();
   $('heads-count').textContent = `${named.length} of ${readings.length} prints`;
   $('heads').innerHTML = named.length
-    ? named.slice(0, 8).map(({ r, i }) => `<li><span class="k">${dateLong(r.date)} · ${team.tk} ${f1(score(r))} ${moveHtml(moveAt(i))}</span>${esc(r.driver)}</li>`).join('')
+    ? named.slice(0, 8).map(({ r, i }) => `<li><span class="k">${printLink(r)} · ${team.tk} ${f1(score(r))} ${moveHtml(moveAt(i))}</span>${esc(r.driver)}</li>`).join('')
     : `<li class="dim">The ${team.name} have not been named as the primary panic driver in any official print. Yet.</li>`;
 
   // Tape: every official print, this team only.
@@ -105,7 +107,7 @@
     `<thead><tr><th>Print</th><th>${team.tk}</th><th>Chg</th>${COMPS.map(c => `<th class="heat" title="${c.name}, ${c.w * 100}% of team score">${c.short}</th>`).join('')}<th>City wt</th><th>City PPI</th></tr></thead><tbody>` +
     rows.map(({ r, i }, n) => {
       const t = r.teams[team.id];
-      return `<tr class="${n === 0 ? 'cur' : ''}"><td>${dateLong(r.date)}</td><td class="num"><b style="color:${team.color}">${f1(t.score)}</b></td><td class="num">${i > 0 ? moveHtml(moveAt(i)) : '<span class="dim">–</span>'}</td>${(t.c || [null, null, null, null, null, null]).map(heat).join('')}<td class="num">${f1(t.weight)}%</td><td class="num">${f1(r.city)}</td></tr>`;
+      return `<tr class="${n === 0 ? 'cur' : ''}"><td>${printLink(r)}</td><td class="num"><b style="color:${team.color}">${f1(t.score)}</b></td><td class="num">${i > 0 ? moveHtml(moveAt(i)) : '<span class="dim">–</span>'}</td>${(t.c || [null, null, null, null, null, null]).map(heat).join('')}<td class="num">${f1(t.weight)}%</td><td class="num">${f1(r.city)}</td></tr>`;
     }).join('') + '</tbody>';
 
   const TAPE_SHORT = 10;
@@ -113,7 +115,7 @@
   const drawTapeList = () => {
     $('tape-list').innerHTML = (tapeAll ? rows : rows.slice(0, TAPE_SHORT)).map(({ r, i }, n) => {
       const t = r.teams[team.id];
-      return `<li class="${n === 0 ? 'cur' : ''}"><div class="tl-top"><span>${dateLong(r.date)}</span><b class="num" style="color:${team.color}">${f1(t.score)}</b><span class="num">${i > 0 ? moveHtml(moveAt(i)) : ''}</span></div><div class="tl-teams num">${t.c ? COMPS.map((c, k) => `${c.short} ${t.c[k]}`).join(' · ') : 'Components not logged'}</div><div class="tl-teams num">City PPI ${f1(r.city)} · weight ${f1(t.weight)}%</div></li>`;
+      return `<li class="${n === 0 ? 'cur' : ''}"><div class="tl-top"><span>${printLink(r)}</span><b class="num" style="color:${team.color}">${f1(t.score)}</b><span class="num">${i > 0 ? moveHtml(moveAt(i)) : ''}</span></div><div class="tl-teams num">${t.c ? COMPS.map((c, k) => `${c.short} ${t.c[k]}`).join(' · ') : 'Components not logged'}</div><div class="tl-teams num">City PPI ${f1(r.city)} · weight ${f1(t.weight)}%</div></li>`;
     }).join('');
     const more = $('tape-more');
     more.hidden = rows.length <= TAPE_SHORT;

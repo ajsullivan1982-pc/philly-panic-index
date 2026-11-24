@@ -1,0 +1,46 @@
+# Philly Panic Index
+
+> A daily index, on a scale of 0 to 100, of fan panic surrounding Philadelphia's four major professional teams: the Eagles (NFL), Phillies (MLB), Sixers (76ers, NBA) and Flyers (NHL). A new "official print" is published most mornings at 5:00 AM ET. The tone is satirical but the arithmetic is real and documented. It measures panic, not team quality, and it is not a forecast, a win probability or betting advice. Not affiliated with any team or league.
+
+## Latest official print: Nov 24, 2026, 5:00 AM ET
+
+- Citywide PPI: 61.3, up 1.1 from the prior print
+- Market status: CONCERNED
+- Eagles (NFL): 84.1, up 0.3; city weight 5000.0%
+- Phillies (MLB): 56.2, unchanged; city weight 1000.0%
+- Sixers (NBA): 17.8, up 3.8; city weight 2500.0%
+- Flyers (NHL): 60.9, unchanged; city weight 1500.0%
+- Primary panic driver: The Sixers lost 128-111 to Portland; the Eagles listed Mitchell, Jones, Ebiketie and Mondon as estimated DNPs.
+- Page for this print: https://phillypanic.com/prints/2026-11-24.html
+- Official prints on record: 86, from Aug 31, 2026 to Nov 24, 2026. Range: high 80.8 (Oct 13, 2026), low 29.6 (Sep 2, 2026).
+
+## How it is calculated (PPI Algorithm v1.2)
+
+- Each team panic score is a weighted sum of six components, each scored 0 to 100: Performance 30%, Expectations vs Reality 20%, Stakes 15%, Injuries & Roster News 15%, Fan & Media Sentiment 10%, Historical Trauma 10%.
+- The citywide reading is the sum of each team score times its city weight. The weights total 100% and follow the sports calendar.
+- Market status bands for the citywide reading: 0-19 PARADE CONDITIONS; 20-34 WE'RE FINE; 35-49 RESTLESS; 50-64 CONCERNED; 65-79 HIGH ANXIETY; 80-89 WOODER BOILING; 90-97 FIRE EVERYBODY; 98-100 CIVIC EMERGENCY.
+- If a day's reading is missing or unverified, nothing is carried forward; the site shows the last official print with its date.
+
+## Pages
+
+- [Homepage](https://phillypanic.com/): the latest print, team components, desk notes and recent prints
+- [Every official print](https://phillypanic.com/prints/): the full history, one page per day
+- [Eagles panic score](https://phillypanic.com/eagles.html): today's reading, the six components and every print
+- [Phillies panic score](https://phillypanic.com/phillies.html): today's reading, the six components and every print
+- [Sixers panic score](https://phillypanic.com/sixers.html): today's reading, the six components and every print
+- [Flyers panic score](https://phillypanic.com/flyers.html): today's reading, the six components and every print
+- [Methodology](https://phillypanic.com/methodology.html): how the index is calculated
+- [Weekly Panic Report](https://phillypanic.com/weekly.html): the latest Monday-to-Sunday week summarized
+- [Research notes](https://phillypanic.com/research.html): longer pieces from the desk
+- [RSS feed](https://phillypanic.com/feed.xml): official prints and research notes
+
+## Research notes
+
+- [Eagles: Buy, Sell or Hold?](https://phillypanic.com/research/eagles-buy-sell-or-hold.html): 2026-10-28. Five straight losses and a trade deadline approaching. The PPI Risk Desk weighs three options for a distressed asset: buy, sell or hold.
+- [The Sixers are 2–0. The vibes are at a record high. The Risk Desk Has Doubts.](https://phillypanic.com/research/sixers-2-0-risk-desk-has-doubts.html): 2026-10-23. Two games in, the Sixers have beaten two good teams and erased a 29-point deficit. The Risk Desk has requested further evidence before reserving its spot on the parade route.
+- [PPI Fan Asset Disposition Policy](https://phillypanic.com/research/fan-asset-disposition-policy.html): 2026-10-08. Formal guidance from the PPI Risk Desk on the disposition of baseballs entering the seating area.
+
+## Elsewhere
+
+- X: https://x.com/phlpanicindex
+- Instagram: https://instagram.com/phlpanicindex

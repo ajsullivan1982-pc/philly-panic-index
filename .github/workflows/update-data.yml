@@ -1,7 +1,8 @@
 name: Update readings
 
 # Pulls the published "Site Feed" tab of the Official Calculation Log and
-# rebuilds data/ppi.js and feed.xml. Commits only when something actually changed.
+# rebuilds data/ppi.js, feed.xml and the pages written from the readings (team pages,
+# prints/, sitemap.xml, llms.txt). Commits only when something actually changed.
 
 on:
   schedule:
@@ -38,7 +39,7 @@ jobs:
 
       - name: Publish if changed
         run: |
-          git add data/ppi.js index.html feed.xml
+          git add data/ppi.js index.html feed.xml eagles.html phillies.html sixers.html flyers.html prints sitemap.xml llms.txt
           if git diff --cached --quiet; then
             echo "No new readings."
             exit 0

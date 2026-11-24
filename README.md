@@ -10,10 +10,13 @@ A static site with no build step.
 - `research.html` and `research/`: research notes. Copy `research/_template.html` for a new one; its preview image is made from `tools/article-card.html`.
 - `weekly.html`: the Weekly Panic Report, one Monday-to-Sunday week summarized. Drawn by `assets/weekly.js`; it needs no upkeep. Adding `?email=1` to the address shows the copy-for-email panel used for the newsletter.
 - `404.html`: shown for any address that does not exist.
+- `prints/`: one page per official print (`prints/2026-11-24.html`) and `prints/index.html`, the full list. Generated; do not edit by hand.
+- `sitemap.xml` and `llms.txt` (a plain-text summary for AI tools): generated; do not edit by hand. New research notes are picked up on the next data run.
 - `feed.xml`: the RSS feed (latest prints and research notes). Generated; do not edit by hand.
 - `assets/`: styles and scripts.
 - `data/ppi.js`: the published readings. Generated; do not edit by hand.
-- `tools/update-data.ps1`: rebuilds `data/ppi.js` and `feed.xml` from the Official Log.
+- `tools/update-data.ps1`: rebuilds `data/ppi.js` and `feed.xml` from the Official Log, then runs `tools/site-pages.ps1`.
+- `tools/site-pages.ps1`: writes the latest figures into `index.html` and the four team pages as plain HTML (the scripts in `assets/` redraw them in the browser), plus `prints/`, `sitemap.xml` and `llms.txt`. This is what search engines and AI tools that do not run JavaScript see.
 - `tools/card.html`, `tools/article-card.html`, `tools/icon.html`: sources for the link-preview images and home-screen icons. Each file's first lines say how to rebuild its image.
 
 ## Daily update
@@ -41,7 +44,7 @@ Automatic. Nothing to run.
 3. Publish:
 
    ```powershell
-   git add data/ppi.js
+   git add data/ppi.js index.html feed.xml eagles.html phillies.html sixers.html flyers.html prints sitemap.xml llms.txt
    git commit -m "Official print"
    git push
    ```

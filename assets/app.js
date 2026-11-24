@@ -1,6 +1,8 @@
 (function () {
   const { TEAMS, COMPS, BANDS, readings, bandIndex, f1, r1, esc, tps, dir, arrow, moveHtml, day, dayDiff, dateShort, dateLong, todayET } = window.PPI;
   const $ = id => document.getElementById(id);
+  // Each print has its own page, written by tools/site-pages.ps1.
+  const printLink = r => `<a href="/prints/${r.date}.html">${dateLong(r.date)}</a>`;
 
   if (!readings.length) {
     $('banner').innerHTML = '<div class="banner">NO OFFICIAL PRINTS LOADED. The board stays dark until there is a verified reading.</div>';
@@ -212,7 +214,7 @@
     `<thead><tr><th>Print</th><th>PPI</th><th>Chg</th><th class="l">Status</th>${TEAMS.map(t => `<th>${t.tk}</th>`).join('')}<th class="l">Primary panic driver</th></tr></thead><tbody>` +
     readings.slice().reverse().map((r, i) => {
       const b = bandIndex(r.status);
-      return `<tr class="${i === 0 ? 'cur' : ''}"><td>${dateLong(r.date)}</td><td class="num"><b>${f1(r.city)}</b></td><td class="num">${moveHtml(r.move)}</td><td class="l sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</td>${TEAMS.map(t => `<td class="num">${f1(r.teams[t.id].score)}</td>`).join('')}<td class="wrap-cell">${esc(r.driver)}</td></tr>`;
+      return `<tr class="${i === 0 ? 'cur' : ''}"><td>${printLink(r)}</td><td class="num"><b>${f1(r.city)}</b></td><td class="num">${moveHtml(r.move)}</td><td class="l sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</td>${TEAMS.map(t => `<td class="num">${f1(r.teams[t.id].score)}</td>`).join('')}<td class="wrap-cell">${esc(r.driver)}</td></tr>`;
     }).join('') + '</tbody>';
 
   // The tape as a list for narrow screens: latest ten, the rest on request.
@@ -222,7 +224,7 @@
     const rows = readings.slice().reverse();
     $('tape-list').innerHTML = (tapeAll ? rows : rows.slice(0, TAPE_SHORT)).map((r, i) => {
       const b = bandIndex(r.status);
-      return `<li class="${i === 0 ? 'cur' : ''}"><div class="tl-top"><span>${dateLong(r.date)}</span><b class="num">${f1(r.city)}</b><span class="num">${moveHtml(r.move)}</span></div><div class="tl-status sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</div><div class="tl-teams num">${TEAMS.map(t => `${t.tk} ${f1(r.teams[t.id].score)}`).join(' · ')}</div><p>${esc(r.driver)}</p></li>`;
+      return `<li class="${i === 0 ? 'cur' : ''}"><div class="tl-top"><span>${printLink(r)}</span><b class="num">${f1(r.city)}</b><span class="num">${moveHtml(r.move)}</span></div><div class="tl-status sev-${b >= 0 ? BANDS[b].sev : 2}">${esc(r.status)}</div><div class="tl-teams num">${TEAMS.map(t => `${t.tk} ${f1(r.teams[t.id].score)}`).join(' · ')}</div><p>${esc(r.driver)}</p></li>`;
     }).join('');
     const more = $('tape-more');
     more.hidden = rows.length <= TAPE_SHORT;
@@ -231,7 +233,7 @@
   $('tape-more').addEventListener('click', () => { tapeAll = !tapeAll; drawTapeList(); });
   drawTapeList();
 
-  $('foot-data').textContent = `${readings.length} official prints on record · ${cur.version}`;
+  $('foot-data').innerHTML = `${readings.length} official prints on record · ${esc(cur.version)} · <a href="/prints/">All prints</a>`;
 
   // Chart
   let range = 0, showTeams = false;
