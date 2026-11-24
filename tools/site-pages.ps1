@@ -88,7 +88,19 @@ function RunTime([string]$run) {
   $d.ToString('h:mm tt', $inv) + ' ET'
 }
 # JSON for a <script type="application/ld+json"> block. "</" is escaped so text can never close the tag.
-function To-LdJson($o) { ($o | ConvertTo-Json -Depth 8 -Compress).Replace('</', '<\/') }
+# Windows PowerShell 5.1 writes ' & < > as \u escapes and PowerShell 7 does not. Both are valid
+# JSON; the output is normalized so a page does not change with the machine that wrote it.
+function To-LdJson($o) {
+  $j = $o | ConvertTo-Json -Depth 8 -Compress
+  $j = [regex]::Replace($j, '\\u00(27|26|3[cCeE])', { param($m) [string][char][Convert]::ToInt32($m.Groups[1].Value, 16) })
+  $j.Replace('</', '<\/')
+}
+# Teams by a value, highest first. Ties keep the order of $TeamInfo, like the stable sort in the browser.
+function Sort-Teams([scriptblock]$value) {
+  $i = 0
+  @($TeamInfo | ForEach-Object { [pscustomobject]@{ t = $_; v = [double](& $value $_); i = $i++ } } |
+      Sort-Object @{ Expression = 'v'; Descending = $true }, @{ Expression = 'i'; Descending = $false } | ForEach-Object { $_.t })
+}
 
 # Replaces the contents of the element with this id. The element must not contain another
 # element of its own tag name, which holds for every id used here.
@@ -214,7 +226,7 @@ function Update-SitePages {
   $teamMove = { param($i, $id) if ($i -gt 0) { R1 ((& $score $P[$i] $id) - (& $score $P[$i - 1] $id)) } else { 0.0 } }
   $contrib = { param($r, $id) [double]$r.teams[$id].score * [double]$r.teams[$id].weight / 100 }
   $printUrl = { param($r) "/prints/$($r.date).html" }
-  $byWeight = { param($r) @($TeamInfo | Sort-Object { - [double]$r.teams[$_.id].weight }) }
+  $byWeight = { param($r) Sort-Teams { param($t) $r.teams[$t.id].weight } }
 
   # The four teams on one print, as a table: used on each print page and on the homepage.
   $teamTable = {
@@ -243,7 +255,7 @@ function Update-SitePages {
     $keep["$($r.date).html"] = $true
     $band = Get-Band $r.status
     $mv = [double]$r.move
-    $ranked = @($TeamInfo | Sort-Object { - (& $score $r $_.id) })
+    $ranked = Sort-Teams { param($t) & $score $r $t.id }
     $teamsLine = ($TeamInfo | ForEach-Object { "$($_.name) $(F1 (& $score $r $_.id))" }) -join ', '
     $title = "Philly Panic Index, $(DateText $r.date): $(F1 $r.city) ($($r.status))"
     $short = $r.driver; if ($short.Length -gt 150) { $short = $short.Substring(0, 147).TrimEnd() + '...' }
@@ -320,8 +332,9 @@ function Update-SitePages {
       (($TeamInfo | ForEach-Object { "$($_.tk) $(F1 $r.teams[$_.id].score)" }) -join ' &middot; ') + "</div><p>$(Esc $r.driver)</p></li>"
   }
   $rev = @($P[($n - 1)..0])
-  $hi = $P | Sort-Object { [double]$_.city } | Select-Object -Last 1
-  $lo = $P | Sort-Object { [double]$_.city } | Select-Object -First 1
+  # The first print to reach the high or the low, as on the homepage.
+  $hi = $P[0]; $lo = $P[0]
+  foreach ($r in $P) { if ([double]$r.city -gt [double]$hi.city) { $hi = $r }; if ([double]$r.city -lt [double]$lo.city) { $lo = $r } }
   $aUrl = "${site}prints/"
   $aTitle = "Every official print $MID Philly Panic Index"
   $aDesc = "All $n official prints of the Philly Panic Index since $(DateText $P[0].date): the citywide reading, market status, the four team scores and the primary panic driver for each day."
@@ -389,7 +402,7 @@ function Update-SitePages {
     $new = $html
     $d = $cur.teams[$t.id]
     $m = & $teamMove ($n - 1) $t.id
-    $ranked = @($TeamInfo | Sort-Object { - (& $score $cur $_.id) })
+    $ranked = Sort-Teams { param($x) & $score $cur $x.id }
     $rank = [array]::IndexOf(@($ranked | ForEach-Object { $_.id }), $t.id)
     $place = @('Most panicked', 'Second most panicked', 'Third most panicked', 'Calmest')[$rank]
 
@@ -480,7 +493,7 @@ function Update-SitePages {
       $notes += [pscustomobject]@{ t = & $g '<meta property="og:title" content="([^"]*)"'; d = & $g '<meta name="description" content="([^"]*)"'; u = & $g '<link rel="canonical" href="([^"]*)"'; at = & $g '<meta property="article:published_time" content="([^"]*)"' }
     }
   }
-  $noteLines = ($notes | Where-Object { $_.t -and $_.u } | Sort-Object at -Descending | ForEach-Object { "- [$($_.t)]($($_.u)): $($_.at). $($_.d)" }) -join "`n"
+  $noteLines = ($notes | Where-Object { $_.t -and $_.u } | Sort-Object @{ Expression = 'at'; Descending = $true }, @{ Expression = 'u'; Descending = $false } | ForEach-Object { "- [$($_.t)]($($_.u)): $($_.at). $($_.d)" }) -join "`n"
   $teamLines = ($TeamInfo | ForEach-Object {
       $x = $cur.teams[$_.id]
       "- $($_.name) ($($_.league)): $(F1 $x.score), $(MoveWords (& $teamMove ($n - 1) $_.id) ''); city weight $(F1 $x.weight)%"
