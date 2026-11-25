@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Tue, 24 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 25 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 61.3, unchanged. CONCERNED. Nov 25 official print</title>
+    <link>https://phillypanic.com/prints/2026-11-25.html</link>
+    <guid isPermaLink="false">ppi:2026-11-25 05:00 ET</guid>
+    <pubDate>Wed, 25 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Phillies made Teruaki Sato a multiyear offer, but he chose the Cubs; the Eagles' short-week injury outlook improved.</description>
+  </item>
   <item>
     <title>PPI 61.3, up 1.1. CONCERNED. Nov 24 official print</title>
     <link>https://phillypanic.com/prints/2026-11-24.html</link>
@@ -216,13 +223,6 @@
     <guid isPermaLink="false">ppi:2026-10-27 05:00 ET</guid>
     <pubDate>Tue, 27 Oct 2026 09:00:00 GMT</pubDate>
     <description>The Eagles lost a fifth straight game, 38-21 to Dallas, after surrendering the final 18 points; Saquon Barkley and Britain Covey also left with injuries.</description>
-  </item>
-  <item>
-    <title>PPI 71.6, up 2.0. HIGH ANXIETY. Oct 26 official print</title>
-    <link>https://phillypanic.com/prints/2026-10-26.html</link>
-    <guid isPermaLink="false">ppi:2026-10-26 05:00 ET</guid>
-    <pubDate>Mon, 26 Oct 2026 09:00:00 GMT</pubDate>
-    <description>The Sixers’ 3-0 start ended in a wire-to-wire 106-93 loss to Detroit while Joel Embiid, VJ Edgecombe and Jabari Walker were unavailable.</description>
   </item>
   <item>
     <title>Research: The Sixers are 2–0. The vibes are at a record high. The Risk Desk Has Doubts.</title>
