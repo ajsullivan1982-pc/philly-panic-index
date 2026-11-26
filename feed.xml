@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Wed, 25 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Thu, 26 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 61.5, up 0.2. CONCERNED. Nov 26 official print</title>
+    <link>https://phillypanic.com/prints/2026-11-26.html</link>
+    <guid isPermaLink="false">ppi:2026-11-26 05:00 ET</guid>
+    <pubDate>Thu, 26 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Flyers lost 7-3 after conceding four goals in the final 2:48; the Sixers beat Miami 111-104 despite Jaylen Brown's hamstring exit.</description>
+  </item>
   <item>
     <title>PPI 61.3, unchanged. CONCERNED. Nov 25 official print</title>
     <link>https://phillypanic.com/prints/2026-11-25.html</link>
@@ -216,13 +223,6 @@
     <guid isPermaLink="false">ppi:2026-10-28 05:00 ET</guid>
     <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
     <description>Joel Embiid and VJ Edgecombe cleared the injury report, partially offset by the Flyers’ second straight loss after another poor start.</description>
-  </item>
-  <item>
-    <title>PPI 73.1, up 1.5. HIGH ANXIETY. Oct 27 official print</title>
-    <link>https://phillypanic.com/prints/2026-10-27.html</link>
-    <guid isPermaLink="false">ppi:2026-10-27 05:00 ET</guid>
-    <pubDate>Tue, 27 Oct 2026 09:00:00 GMT</pubDate>
-    <description>The Eagles lost a fifth straight game, 38-21 to Dallas, after surrendering the final 18 points; Saquon Barkley and Britain Covey also left with injuries.</description>
   </item>
   <item>
     <title>Research: The Sixers are 2–0. The vibes are at a record high. The Risk Desk Has Doubts.</title>
