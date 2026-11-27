@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Thu, 26 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 27 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 55.6, down 5.9. CONCERNED. Nov 27 official print</title>
+    <link>https://phillypanic.com/prints/2026-11-27.html</link>
+    <guid isPermaLink="false">ppi:2026-11-27 05:00 ET</guid>
+    <pubDate>Fri, 27 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Eagles erased a 21-point deficit to beat Dallas 39-38 on a last-second 59-yard field goal.</description>
+  </item>
   <item>
     <title>PPI 61.5, up 0.2. CONCERNED. Nov 26 official print</title>
     <link>https://phillypanic.com/prints/2026-11-26.html</link>
@@ -216,13 +223,6 @@
     <guid isPermaLink="true">https://phillypanic.com/research/eagles-buy-sell-or-hold.html</guid>
     <pubDate>Wed, 28 Oct 2026 16:00:00 GMT</pubDate>
     <description>Five straight losses and a trade deadline approaching. The PPI Risk Desk weighs three options for a distressed asset: buy, sell or hold.</description>
-  </item>
-  <item>
-    <title>PPI 72.5, down 0.6. HIGH ANXIETY. Oct 28 official print</title>
-    <link>https://phillypanic.com/prints/2026-10-28.html</link>
-    <guid isPermaLink="false">ppi:2026-10-28 05:00 ET</guid>
-    <pubDate>Wed, 28 Oct 2026 09:00:00 GMT</pubDate>
-    <description>Joel Embiid and VJ Edgecombe cleared the injury report, partially offset by the Flyers’ second straight loss after another poor start.</description>
   </item>
   <item>
     <title>Research: The Sixers are 2–0. The vibes are at a record high. The Risk Desk Has Doubts.</title>
