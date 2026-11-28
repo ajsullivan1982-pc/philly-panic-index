@@ -2,17 +2,17 @@
 
 > A daily index, on a scale of 0 to 100, of fan panic surrounding Philadelphia's four major professional teams: the Eagles (NFL), Phillies (MLB), Sixers (76ers, NBA) and Flyers (NHL). A new "official print" is published most mornings at 5:00 AM ET. The tone is satirical but the arithmetic is real and documented. It measures panic, not team quality, and it is not a forecast, a win probability or betting advice. Not affiliated with any team or league.
 
-## Latest official print: Nov 27, 2026, 5:00 AM ET
+## Latest official print: Nov 28, 2026, 5:00 AM ET
 
-- Citywide PPI: 55.6, down 5.9 from the prior print
+- Citywide PPI: 54.8, down 0.8 from the prior print
 - Market status: CONCERNED
-- Eagles (NFL): 70.6, down 12.3; city weight 50.0%
+- Eagles (NFL): 70.6, unchanged; city weight 50.0%
 - Phillies (MLB): 58.4, unchanged; city weight 10.0%
-- Sixers (NBA): 17.6, up 1.2; city weight 25.0%
-- Flyers (NHL): 67.1, unchanged; city weight 15.0%
-- Primary panic driver: The Eagles erased a 21-point deficit to beat Dallas 39-38 on a last-second 59-yard field goal.
-- Page for this print: https://phillypanic.com/prints/2026-11-27.html
-- Official prints on record: 89, from Aug 31, 2026 to Nov 27, 2026. Range: high 80.8 (Oct 12, 2026), low 29.6 (Sep 2, 2026).
+- Sixers (NBA): 15.8, down 1.8; city weight 25.0%
+- Flyers (NHL): 64.4, down 2.7; city weight 15.0%
+- Primary panic driver: The Sixers clinched their first NBA Cup knockout berth with a 111-87 win; the Flyers beat Vancouver 5-2 while Matvei Michkov sat for violating team rules.
+- Page for this print: https://phillypanic.com/prints/2026-11-28.html
+- Official prints on record: 90, from Aug 31, 2026 to Nov 28, 2026. Range: high 80.8 (Oct 12, 2026), low 29.6 (Sep 2, 2026).
 
 ## How it is calculated (PPI Algorithm v1.2)
 

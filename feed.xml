@@ -6,7 +6,14 @@
   <description>A daily index of panic surrounding the Eagles, Phillies, Sixers and Flyers. Official prints and research notes.</description>
   <language>en-us</language>
   <atom:link href="https://phillypanic.com/feed.xml" rel="self" type="application/rss+xml"/>
-  <lastBuildDate>Fri, 27 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 28 Nov 2026 10:00:00 GMT</lastBuildDate>
+  <item>
+    <title>PPI 54.8, down 0.8. CONCERNED. Nov 28 official print</title>
+    <link>https://phillypanic.com/prints/2026-11-28.html</link>
+    <guid isPermaLink="false">ppi:2026-11-28 05:00 ET</guid>
+    <pubDate>Sat, 28 Nov 2026 10:00:00 GMT</pubDate>
+    <description>The Sixers clinched their first NBA Cup knockout berth with a 111-87 win; the Flyers beat Vancouver 5-2 while Matvei Michkov sat for violating team rules.</description>
+  </item>
   <item>
     <title>PPI 55.6, down 5.9. CONCERNED. Nov 27 official print</title>
     <link>https://phillypanic.com/prints/2026-11-27.html</link>
@@ -209,13 +216,6 @@
     <guid isPermaLink="false">ppi:2026-10-30 05:00 ET</guid>
     <pubDate>Fri, 30 Oct 2026 09:00:00 GMT</pubDate>
     <description>Jaylen Brown is questionable for tonight’s NBA Cup opener with left knee soreness while the Eagles’ six DNPs remained out of Thursday practice.</description>
-  </item>
-  <item>
-    <title>PPI 72.6, up 0.1. HIGH ANXIETY. Oct 29 official print</title>
-    <link>https://phillypanic.com/prints/2026-10-29.html</link>
-    <guid isPermaLink="false">ppi:2026-10-29 05:00 ET</guid>
-    <pubDate>Thu, 29 Oct 2026 09:00:00 GMT</pubDate>
-    <description>The Flyers lost a third straight game and a 12th time in 15, offsetting the relief from the Sixers’ comeback win in Indiana.</description>
   </item>
   <item>
     <title>Research: Eagles: Buy, Sell or Hold?</title>
